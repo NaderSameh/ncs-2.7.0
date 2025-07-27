@@ -19,6 +19,7 @@ jobs:
         sudo apt install -y cmake ninja-build gperf python3-pip python3-setuptools \
                             python3-wheel xz-utils file make gcc gcc-multilib \
                             libncurses-dev libffi-dev git wget
+        sudo apt install gcc-arm-none-eabi
 
     - name: Install west and Python deps
       run: |
