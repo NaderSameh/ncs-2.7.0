@@ -27,9 +27,6 @@ jobs:
 
     - name: Update west modules and export Zephyr CMake
       run: |
-        rm -rf .west
-        west init -l nrf
-        west update
         west zephyr-export
 
     - name: Build Zephyr sample used in tests
