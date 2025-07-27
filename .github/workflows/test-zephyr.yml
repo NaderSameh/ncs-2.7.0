@@ -20,25 +20,20 @@ jobs:
                             python3-wheel xz-utils file make gcc gcc-multilib \
                             libncurses-dev libffi-dev git wget
         sudo apt install gcc-arm-none-eabi
-
-    - name: Install west and Python deps
-      run: |
         pip3 install west
-        west init -l .
-        west update
-        west zephyr-export
         pip3 install -r zephyr/scripts/requirements.txt
 
-    - name: Install Zephyr SDK
+    - name: Export Zephyr CMake
       run: |
-        wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/zephyr-sdk-0.16.4_linux-x86_64.tar.xz
-        tar xf zephyr-sdk-0.16.4_linux-x86_64.tar.xz
-        mv zephyr-sdk-0.16.4 $HOME/zephyr-sdk
-        $HOME/zephyr-sdk/setup.sh -t all -h -y
-      env:
-        ZEPHYR_SDK_INSTALL_DIR: $HOME/zephyr-sdk
+        source zephyr/zephyr-env.sh
+        west zephyr-export
 
-    - name: Build with west
+    - name: Build Zephyr sample using west
       run: |
-        export ZEPHYR_SDK_INSTALL_DIR=$HOME/zephyr-sdk
-        west build -b your_board_name path/to/your/app
+        source zephyr/zephyr-env.sh
+        west build -s zephyr/samples/hello_world -b qemu_cortex_m3
+
+    - name: Run Pytest on QEMU
+      run: |
+        source zephyr/zephyr-env.sh
+        pytest zephyr/pytest-tests/ -s
