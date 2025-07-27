@@ -27,13 +27,16 @@ jobs:
         pip3 install -r zephyr/scripts/requirements.txt
         pip3 install pykwalify
 
+        
     - name: Build Zephyr sample used in tests
       run: |
         source zephyr/zephyr-env.sh
         cd zephyr/samples/hello_world
         mkdir -p build
         cd build
-        cmake -GNinja -DBOARD=qemu_cortex_m3 ../.
+        cmake -GNinja -DBOARD=qemu_cortex_m3 \
+        -DZephyr-sdk_DIR=/opt/toolchains/zephyr-sdk/cmake \
+        ../.
         ninja
 
     - name: Run pytest with QEMU
