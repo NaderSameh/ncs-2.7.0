@@ -23,13 +23,16 @@ jobs:
         sudo apt install -y python3-pip cmake ninja-build gperf ccache dfu-util device-tree-compiler wget \
                             git python3-setuptools python3-wheel xz-utils file make gcc \
                             qemu-system-arm
-        pip3 install west pytest
+        pip3 install pytest
 
     - name: Build Zephyr sample used in tests
       run: |
         source zephyr/zephyr-env.sh
         cd zephyr/samples/hello_world
-        west build -b qemu_cortex_m3
+        mkdir -p build
+        cd build
+        cmake -GNinja -DBOARD=qemu_cortex_m3 ../zephyr/samples/hello_world
+        ninja
 
     - name: Run pytest with QEMU
       run: |
