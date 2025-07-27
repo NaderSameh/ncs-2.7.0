@@ -9,6 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      ZEPHYR_BASE: ${{ github.workspace }}/zephyr
     steps:
     - name: Checkout your repo
       uses: actions/checkout@v4
@@ -25,8 +27,6 @@ jobs:
 
     - name: Build Zephyr sample using west
       run: |
-        west init .
-        west update
         source zephyr/zephyr-env.sh
         west build  ./zephyr/samples/hello_world -b qemu_cortex_m3
 
