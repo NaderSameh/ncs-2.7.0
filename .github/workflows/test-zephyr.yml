@@ -1,45 +1,43 @@
-name: Zephyr Pytest QEMU Test
+name: Zephyr CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [main]
+  pull_request:
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
-    env:
-      ZEPHYR_TOOLCHAIN_VARIANT: zephyr
-      ZEPHYR_SDK_INSTALL_DIR: /opt/toolchains/zephyr-sdk
-      PYTHONUNBUFFERED: 1
-
     steps:
-    - name: Checkout repository
+    - name: Checkout your repo
       uses: actions/checkout@v4
 
     - name: Install dependencies
       run: |
         sudo apt update
-        sudo apt install -y python3-pip cmake ninja-build gperf ccache dfu-util device-tree-compiler wget \
-                            git python3-setuptools python3-wheel xz-utils file make gcc \
-                            qemu-system-arm
-        pip3 install pytest
+        sudo apt install -y cmake ninja-build gperf python3-pip python3-setuptools \
+                            python3-wheel xz-utils file make gcc gcc-multilib \
+                            libncurses-dev libffi-dev git wget
+
+    - name: Install west and Python deps
+      run: |
+        pip3 install west
+        west init -l .
+        west update
+        west zephyr-export
         pip3 install -r zephyr/scripts/requirements.txt
-        pip3 install pykwalify
 
-        
-    - name: Build Zephyr sample used in tests
+    - name: Install Zephyr SDK
       run: |
-        source zephyr/zephyr-env.sh
-        cd zephyr/samples/hello_world
-        mkdir -p build
-        cd build
-        cmake -GNinja -DBOARD=qemu_cortex_m3 \
-        -DZephyr-sdk_DIR=/opt/toolchains/zephyr-sdk/cmake \
-        ../.
-        ninja
+        wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/zephyr-sdk-0.16.4_linux-x86_64.tar.xz
+        tar xf zephyr-sdk-0.16.4_linux-x86_64.tar.xz
+        mv zephyr-sdk-0.16.4 $HOME/zephyr-sdk
+        $HOME/zephyr-sdk/setup.sh -t all -h -y
+      env:
+        ZEPHYR_SDK_INSTALL_DIR: $HOME/zephyr-sdk
 
-    - name: Run pytest with QEMU
+    - name: Build with west
       run: |
-        source ./zephyr/zephyr-env.sh
-        pytest ./zephyr/pytest-tests/ -s 
+        export ZEPHYR_SDK_INSTALL_DIR=$HOME/zephyr-sdk
+        west build -b your_board_name path/to/your/app
