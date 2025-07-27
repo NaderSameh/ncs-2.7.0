@@ -25,12 +25,9 @@ jobs:
                             qemu-system-arm
         pip3 install west pytest
 
-    - name: Update west modules and export Zephyr CMake
-      run: |
-        west zephyr-export
-
     - name: Build Zephyr sample used in tests
       run: |
+        source zephyr/zephyr-env.sh
         cd zephyr/samples/hello_world
         west build -b qemu_cortex_m3
 
