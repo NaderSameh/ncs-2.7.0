@@ -23,11 +23,6 @@ jobs:
         pip3 install west
         pip3 install -r zephyr/scripts/requirements.txt
 
-    - name: Export Zephyr CMake
-      run: |
-        source zephyr/zephyr-env.sh
-        west zephyr-export
-
     - name: Build Zephyr sample using west
       run: |
         source zephyr/zephyr-env.sh
