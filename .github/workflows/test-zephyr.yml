@@ -31,7 +31,7 @@ jobs:
         cd zephyr/samples/hello_world
         mkdir -p build
         cd build
-        cmake -GNinja -DBOARD=qemu_cortex_m3 ../zephyr/samples/hello_world
+        cmake -GNinja -DBOARD=qemu_cortex_m3 ../.
         ninja
 
     - name: Run pytest with QEMU
