@@ -1,0 +1,47 @@
+description: Kinetis LPUART
+
+compatible: "nxp,kinetis-lpuart"
+
+include: [uart-controller.yaml, pinctrl-device.yaml]
+
+properties:
+  reg:
+    required: true
+
+  nxp,loopback:
+    type: boolean
+    description: |
+      Enable loopback mode on LPUART peripheral. When present, RX pin is
+      disconnected, and transmitter output is internally connected to
+      the receiver input.
+
+  single-wire:
+    type: boolean
+    description: |
+      Enable the single wire half-duplex communication.
+      Using this mode, TX and RX lines are internally connected and
+      only TX pin is used afterwards and should be configured.
+      RX/TX conflicts must be handled on user side.
+
+  tx-invert:
+    type: boolean
+    description: |
+      Invert the binary logic of tx pin. When enabled, physical logic levels are inverted and
+      we use 1=Low, 0=High instead of 1=High, 0=Low.
+
+  rx-invert:
+    type: boolean
+    description: |
+      Invert the binary logic of rx pin. When enabled, physical logic levels are inverted and
+      we use 1=Low, 0=High instead of 1=High, 0=Low.
+
+  nxp,rs485-mode:
+    type: boolean
+    description: |
+      Set to enable RTS signal, which can be used to enable the driver
+      of an external RS-485 transceiver. Note hw-flow-control should be
+      set to false.
+
+  nxp,rs485-de-active-low:
+    type: boolean
+    description: RTS polarity at RS485 mode.

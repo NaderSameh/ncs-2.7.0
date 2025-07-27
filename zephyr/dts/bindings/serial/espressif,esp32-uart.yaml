@@ -1,0 +1,35 @@
+description: ESP32 UART
+
+compatible: "espressif,esp32-uart"
+
+include: [uart-controller.yaml, pinctrl-device.yaml]
+
+properties:
+  reg:
+    required: true
+
+  pinctrl-0:
+    required: true
+
+  pinctrl-names:
+    required: true
+
+  hw-rs485-hd-mode:
+    type: boolean
+    description: |
+      Enable the hardware RS485 half duplex mode.
+      Overrides hw-flow-control if both are set.
+      Using this mode, the pin assigned to DTR
+      is asserted during transmission.
+
+  tx-invert:
+    type: boolean
+    description: |
+      Invert the binary logic of tx pin. When enabled, physical logic levels are inverted and
+      we use 1=Low, 0=High instead of 1=High, 0=Low.
+
+  rx-invert:
+    type: boolean
+    description: |
+      Invert the binary logic of rx pin. When enabled, physical logic levels are inverted and
+      we use 1=Low, 0=High instead of 1=High, 0=Low.

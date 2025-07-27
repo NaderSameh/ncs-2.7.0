@@ -1,0 +1,24 @@
+# Copyright 2023 NXP
+# SPDX-License-Identifier: Apache-2.0
+#
+# Common fields for MIPI-DBI devices
+
+include: [base.yaml, power.yaml]
+
+on-bus: mipi-dbi
+
+properties:
+  mipi-max-frequency:
+    type: int
+    description: Maximum clock frequency of device's MIPI interface in Hz
+
+  mipi-mode:
+    type: int
+    description: |
+      MIPI DBI mode in use. Use the macros, not the actual enum value. Here is
+      the concordance list (see dt-bindings/mipi_dbi/mipi_dbi.h)
+        1     MIPI_DBI_MODE_SPI_3WIRE
+        2     MIPI_DBI_MODE_SPI_4WIRE
+    enum:
+      - 1
+      - 2

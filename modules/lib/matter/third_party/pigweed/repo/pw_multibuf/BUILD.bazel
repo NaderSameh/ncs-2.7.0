@@ -1,0 +1,160 @@
+# Copyright 2023 The Pigweed Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not
+# use this file except in compliance with the License. You may obtain a copy of
+# the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations under
+# the License.
+
+load(
+    "//pw_build:pigweed.bzl",
+    "pw_cc_test",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+licenses(["notice"])
+
+cc_library(
+    name = "chunk",
+    srcs = ["chunk.cc"],
+    hdrs = ["public/pw_multibuf/chunk.h"],
+    includes = ["public"],
+    deps = [
+        "//pw_assert",
+        "//pw_bytes",
+        "//pw_preprocessor",
+        "//pw_span",
+        "//pw_sync:mutex",
+    ],
+)
+
+cc_library(
+    name = "header_chunk_region_tracker",
+    hdrs = ["public/pw_multibuf/header_chunk_region_tracker.h"],
+    includes = ["public"],
+    deps = [
+        ":chunk",
+        "//pw_allocator:allocator",
+        "//pw_bytes",
+    ],
+)
+
+cc_library(
+    name = "single_chunk_region_tracker",
+    hdrs = ["public/pw_multibuf/single_chunk_region_tracker.h"],
+    includes = ["public"],
+    deps = [
+        ":chunk",
+        "//pw_assert",
+        "//pw_bytes",
+    ],
+)
+
+pw_cc_test(
+    name = "chunk_test",
+    srcs = ["chunk_test.cc"],
+    deps = [
+        ":chunk",
+        ":header_chunk_region_tracker",
+        "//pw_allocator:allocator_testing",
+        "//pw_unit_test",
+    ],
+)
+
+pw_cc_test(
+    name = "header_chunk_region_tracker_test",
+    srcs = ["header_chunk_region_tracker_test.cc"],
+    deps = [
+        ":chunk",
+        ":header_chunk_region_tracker",
+        "//pw_allocator:allocator_testing",
+        "//pw_status",
+    ],
+)
+
+pw_cc_test(
+    name = "single_chunk_region_tracker_test",
+    srcs = ["single_chunk_region_tracker_test.cc"],
+    deps = [
+        ":chunk",
+        ":single_chunk_region_tracker",
+    ],
+)
+
+cc_library(
+    name = "pw_multibuf",
+    srcs = ["multibuf.cc"],
+    hdrs = ["public/pw_multibuf/multibuf.h"],
+    deps = [
+        ":chunk",
+        "//pw_preprocessor",
+    ],
+)
+
+pw_cc_test(
+    name = "multibuf_test",
+    srcs = ["multibuf_test.cc"],
+    deps = [
+        ":header_chunk_region_tracker",
+        ":pw_multibuf",
+        "//pw_allocator:allocator_testing",
+        "//pw_assert",
+        "//pw_unit_test",
+    ],
+)
+
+cc_library(
+    name = "allocator",
+    srcs = ["allocator.cc"],
+    hdrs = ["public/pw_multibuf/allocator.h"],
+    deps = [
+        ":pw_multibuf",
+        "//pw_async2:dispatcher",
+        "//pw_async2:poll",
+        "//pw_result",
+    ],
+)
+
+pw_cc_test(
+    name = "allocator_test",
+    srcs = ["allocator_test.cc"],
+    deps = [
+        ":allocator",
+        "//pw_allocator:allocator_testing",
+        "//pw_async2:dispatcher",
+        "//pw_async2:poll",
+        "//pw_unit_test",
+    ],
+)
+
+cc_library(
+    name = "simple_allocator",
+    srcs = ["simple_allocator.cc"],
+    hdrs = ["public/pw_multibuf/simple_allocator.h"],
+    deps = [
+        ":allocator",
+        ":pw_multibuf",
+        "//pw_allocator:allocator",
+        "//pw_containers:intrusive_list",
+    ],
+)
+
+pw_cc_test(
+    name = "simple_allocator_test",
+    srcs = ["simple_allocator_test.cc"],
+    deps = [
+        ":simple_allocator",
+        "//pw_allocator:allocator_testing",
+        "//pw_allocator:null_allocator",
+        "//pw_async2:dispatcher",
+        "//pw_async2:poll",
+        "//pw_unit_test",
+    ],
+)

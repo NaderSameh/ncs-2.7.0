@@ -1,0 +1,13 @@
+# created by virtualenv automatically
+/venv/*
+/.idea/*
+/suit_generator.egg-info/*
+/suit_generator/_version.py
+/coverage/*
+*/.coverage
+.coverage
+/dist/*
+__pycache__
+/doc/build/*
+/build/*
+suit-generator.log*

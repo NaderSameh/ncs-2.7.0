@@ -1,0 +1,7 @@
+board:
+  name: nrf52840dk_tracker
+  vendor: nordic
+  socs:
+  # Physical nRF52840 SoC on PCA10056
+  - name: nrf52840
+

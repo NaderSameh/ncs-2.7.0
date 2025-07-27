@@ -1,0 +1,7 @@
+tests:
+  lte_lc.functionality_test:
+    sysbuild: true
+    platform_allow: native_sim
+    integration_platforms:
+      - native_sim
+    tags: lte_lc sysbuild

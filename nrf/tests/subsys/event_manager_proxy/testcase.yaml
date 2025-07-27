@@ -1,0 +1,15 @@
+tests:
+  event_manager_proxy.openamp:
+    sysbuild: true
+    platform_allow: nrf5340dk/nrf5340/cpuapp
+    integration_platforms:
+      - nrf5340dk/nrf5340/cpuapp
+    tags: event_manager_proxy sysbuild
+  event_manager_proxy.icmsg:
+    sysbuild: true
+    extra_args:
+      FILE_SUFFIX=icmsg
+    platform_allow: nrf5340dk/nrf5340/cpuapp
+    integration_platforms:
+      - nrf5340dk/nrf5340/cpuapp
+    tags: event_manager_proxy sysbuild

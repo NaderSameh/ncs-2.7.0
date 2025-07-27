@@ -1,0 +1,43 @@
+name: Zephyr Pytest QEMU Test
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      ZEPHYR_TOOLCHAIN_VARIANT: zephyr
+      ZEPHYR_SDK_INSTALL_DIR: /opt/toolchains/zephyr-sdk
+      PYTHONUNBUFFERED: 1
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y python3-pip cmake ninja-build gperf ccache dfu-util device-tree-compiler wget \
+                            git python3-setuptools python3-wheel xz-utils file make gcc \
+                            qemu-system-arm
+        pip3 install west pytest
+
+    - name: Update west modules and export Zephyr CMake
+      run: |
+        rm -rf .west
+        west init -l nrf
+        west update
+        west zephyr-export
+
+    - name: Build Zephyr sample used in tests
+      run: |
+        cd zephyr/samples/hello_world
+        west build -b qemu_cortex_m3
+
+    - name: Run pytest with QEMU
+      run: |
+        source ./zephyr/zephyr-env.sh
+        pytest ./zephyr/pytest-tests/ -s 

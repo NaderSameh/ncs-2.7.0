@@ -1,0 +1,100 @@
+# Copyright 2023 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+#
+# west manifest file for BabbleSim
+# which targets developers who want a typical set of components
+# used for development and test of BLE/802.15.4 devices
+#
+# Check https://babblesim.github.io/fetching.html for more information
+#
+
+manifest:
+  defaults:
+    remote: upstream
+
+  remotes:
+    - name: upstream
+      url-base: ssh://git@github.com/BabbleSim
+
+  self:
+    path: bsim
+
+  projects:
+    - name: babblesim_base
+      repo-path: base
+      path: bsim/components
+      revision: master
+      groups:
+        - babblesim
+    - name: babblesim_ext_2G4_libPhyComv1
+      repo-path: ext_2G4_libPhyComv1
+      path: bsim/components/ext_2G4_libPhyComv1
+      revision: master
+      groups:
+        - babblesim
+    - name: babblesim_ext_2G4_phy_v1
+      repo-path: ext_2G4_phy_v1
+      path: bsim/components/ext_2G4_phy_v1
+      revision: master
+      groups:
+        - babblesim
+    - name: babblesim_ext_2G4_channel_NtNcable
+      repo-path: ext_2G4_channel_NtNcable
+      path: bsim/components/ext_2G4_channel_NtNcable
+      revision: master
+      groups:
+        - babblesim
+    - name: babblesim_ext_2G4_channel_multiatt
+      repo-path: ext_2G4_channel_multiatt
+      path: bsim/components/ext_2G4_channel_multiatt
+      revision: master
+      groups:
+        - babblesim_extra
+    - name: babblesim_ext_2G4_channel_Indoorv1
+      repo-path: ext_2G4_channel_Indoorv1
+      path: bsim/components/ext_2G4_channel_Indoorv1
+      revision: master
+      groups:
+        - babblesim_extra
+    - name: babblesim_ext_2G4_modem_magic
+      repo-path: ext_2G4_modem_magic
+      path: bsim/components/ext_2G4_modem_magic
+      revision: master
+      groups:
+        - babblesim
+    - name: babblesim_ext_2G4_modem_BLE_simple
+      repo-path: ext_2G4_modem_BLE_simple
+      path: bsim/components/ext_2G4_modem_BLE_simple
+      revision: master
+      groups:
+        - babblesim_extra
+    - name: babblesim_ext_2G4_device_burst_interferer
+      repo-path: ext_2G4_device_burst_interferer
+      path: bsim/components/ext_2G4_device_burst_interferer
+      revision: master
+      groups:
+        - babblesim
+    - name: babblesim_ext_2G4_device_WLAN_actmod
+      repo-path: ext_2G4_device_WLAN_actmod
+      path: bsim/components/ext_2G4_device_WLAN_actmod
+      revision: master
+      groups:
+        - babblesim_extra
+    - name: babblesim_ext_2G4_device_playback
+      repo-path: ext_2G4_device_playback
+      path: bsim/components/ext_2G4_device_playback
+      revision: master
+      groups:
+        - babblesim_extra
+    - name: babblesim_ext_2G4_device_playbackv2
+      repo-path: ext_2G4_device_playbackv2
+      path: bsim/components/ext_2G4_device_playbackv2
+      revision: master
+      groups:
+        - babblesim_extra
+    - name: babblesim_ext_libCryptov1
+      repo-path: ext_libCryptov1
+      path: bsim/components/ext_libCryptov1
+      revision: master
+      groups:
+        - babblesim

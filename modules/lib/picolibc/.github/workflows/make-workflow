@@ -1,0 +1,23 @@
+#!/bin/bash
+
+cat head
+
+for build in cmake; do
+    for arch in linux; do
+	echo "  $build-$arch:"
+	cat variants-$build
+	cat targets-$build-$arch
+	cat steps-head
+	cat steps-$build
+    done
+done
+
+for build in minsize release; do
+    for arch in linux; do
+	echo "  $build-$arch:"
+	cat variants
+	cat targets-$arch
+	cat steps-head
+	cat steps-$build
+    done
+done

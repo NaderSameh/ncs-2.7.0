@@ -1,0 +1,17 @@
+/ {
+    aliases {
+        gnss = &gnss;
+    };
+};
+
+&uart1 {
+    status = "okay";
+    current-speed = <115200>;
+
+    gnss: gnss-nmea-generic {
+        status = "okay";
+        compatible = "gnss-nmea-generic";
+        // uart-baudrate = <115200>;
+        // zephyr,deferred-init;
+    };
+};
