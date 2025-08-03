@@ -27,7 +27,6 @@ jobs:
       - name: Install west and Python deps
         run: |
           pip3 install -U west
-          west update
           pip3 install -r zephyr/scripts/requirements.txt
 
       - name: Build hello_world for QEMU
