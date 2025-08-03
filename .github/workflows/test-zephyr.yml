@@ -27,10 +27,9 @@ jobs:
 
     - name: Build Zephyr sample using west
       run: |
-        unset ZEPHYR_BASE                     # 🔧 Unset it first
-        west init -l .                        # ✅ Initialize west workspace locally
-        source zephyr/zephyr-env.sh          # 🔁 This sets ZEPHYR_BASE properly
-        west build ./zephyr/samples/hello_world -b qemu_cortex_m3
+        unset ZEPHYR_BASE                    # Unset any global override
+        source zephyr/zephyr-env.sh         # Sets ZEPHYR_BASE from .west automatically
+        west build zephyr/samples/hello_world -b qemu_cortex_m3
 
     - name: Run Pytest on QEMU
       run: |
