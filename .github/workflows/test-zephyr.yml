@@ -18,9 +18,11 @@ jobs:
 
       - name: Install west and Python deps
         run: |
+          rm -rf .west
           pip3 install -U west
+          west init -l .
           west update
-          pip3 install -r zephyr/scripts/requirements.txt
+          pip3 install -r ../zephyr/scripts/requirements-base.txt
 
       - name: Export Zephyr environment
         run: |
