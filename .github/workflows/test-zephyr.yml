@@ -27,6 +27,7 @@ jobs:
 
     - name: Build Zephyr sample using west
       run: |
+        west update
         source zephyr/zephyr-env.sh
         west build  ./zephyr/samples/hello_world -b qemu_cortex_m3
 
