@@ -31,6 +31,6 @@ jobs:
 
       - name: Build hello_world for QEMU
         run: |
-          source zephyr/zephyr-env.sh
+          . zephyr/zephyr-env.sh
           west build -b qemu_x86 zephyr/samples/hello_world
           pytest ./zephyr/pytest-tests/pytest-reference.py -s
