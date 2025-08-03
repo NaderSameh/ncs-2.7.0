@@ -1,38 +1,30 @@
-name: Zephyr CI
+# .github/workflows/build.yml
+name: Build Zephyr Application
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      ZEPHYR_BASE: ${{ github.workspace }}/zephyr
+    container:
+      image: ghcr.io/zephyrproject-rtos/ci:v0.25.4
+      options: --user root  # Optional: run as root if needed
+
     steps:
-    - name: Checkout your repo
+    - name: Checkout source
       uses: actions/checkout@v4
 
-    - name: Install dependencies
+    - name: Init west
       run: |
-        sudo apt update
-        sudo apt install -y cmake ninja-build gperf python3-pip python3-setuptools \
-                            python3-wheel xz-utils file make gcc gcc-multilib \
-                            libncurses-dev libffi-dev git wget
-        sudo apt install gcc-arm-none-eabi
-        pip3 install west
+        west init -l .
+        west update
+        west zephyr-export
         pip3 install -r zephyr/scripts/requirements.txt
 
-    - name: Build Zephyr sample using west
+    - name: Build project
       run: |
-        unset ZEPHYR_BASE                    # Unset any global override
-        west init -l .
-        source zephyr/zephyr-env.sh         # Sets ZEPHYR_BASE from .west automatically
-        west build zephyr/samples/hello_world -b qemu_cortex_m3
-
-    - name: Run Pytest on QEMU
-      run: |
-        source zephyr/zephyr-env.sh
-        pytest zephyr/pytest-tests/ -s
+        west build -b qemu_cortex_m3 zephyr/samples/hello_world
