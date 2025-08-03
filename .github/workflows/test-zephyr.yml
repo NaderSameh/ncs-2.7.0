@@ -28,6 +28,7 @@ jobs:
         run: |
           pip3 install -U west
           pip3 install -r zephyr/scripts/requirements.txt
+          pip install pynmea2
 
       - name: Build hello_world for QEMU
         shell: bash
