@@ -34,5 +34,4 @@ jobs:
 
       - name: Build hello_world for QEMU
         run: |
-          west build -b qemu_cortex_m3 zephyr/samples/hello_world
-          west build -t run
+          pytest ./zephyr/pytest-tests/pytest-reference.py -s

@@ -1,0 +1,6 @@
+osource "d:/ncs-d/cylockv2i7.2/boards/shields/*/Kconfig.shield"
+osource "d:/ncs-d/cytrackerv1.1/cylockv2i7.2/boards/shields/*/Kconfig.shield"
+osource "d:/ncs-d/thurayagateway/boards/shields/*/Kconfig.shield"
+osource "d:/ncs-d/beacon-tag/boards/shields/*/Kconfig.shield"
+osource "d:/ncs-d/v2.7.0-rc3/zephyr/samples/hello_world/boards/shields/*/Kconfig.shield"
+osource "D:/ncs-D/v2.7.0-rc3/nrf/boards/shields/*/Kconfig.shield"

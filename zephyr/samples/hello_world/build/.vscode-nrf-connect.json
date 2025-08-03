@@ -1,0 +1,20 @@
+{
+  "toolchainPath": "d:\\ncs-D\\toolchains\\ce3b5ff664",
+  "sdkPath": "d:\\ncs-D\\v2.7.0-rc3",
+  "board": "qemu_cortex_m3/ti_lm3s6965",
+  "boardDirs": [
+    "d:\\ncs-D\\v2.7.0-rc3\\zephyr\\boards\\qemu\\cortex_m3"
+  ],
+  "boardRevision": "",
+  "boardDir": "d:\\ncs-D\\v2.7.0-rc3\\zephyr\\boards\\qemu\\cortex_m3",
+  "shouldBuild": true,
+  "optimizations": "none",
+  "cmakeArgs": [],
+  "confFiles": [],
+  "buildDirectory": "build",
+  "kconfigFragments": [],
+  "snippets": [],
+  "dtcOverlays": [],
+  "extraDtcOverlays": [],
+  "sysbuild": false
+}
