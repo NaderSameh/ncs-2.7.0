@@ -1,0 +1,19 @@
+# ninja log v5
+1	66	7759167256351647	_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-mkdir	926d819784cecd43
+1	66	7759167256351647	D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-mkdir	926d819784cecd43
+66	133	7759167257041697	_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-download	2431e443214aa98e
+66	133	7759167257041697	D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-download	2431e443214aa98e
+133	203	7759167257731647	_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-update	95c77be3c8d00c43
+133	203	7759167257731647	D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-update	95c77be3c8d00c43
+203	264	7759167258351641	_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-patch	e4c582021f9d62e2
+203	264	7759167258351641	D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-patch	e4c582021f9d62e2
+265	329	7759167258991776	_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-configure	36ffe76679acb690
+265	329	7759167258991776	D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-configure	36ffe76679acb690
+329	10798	0	_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-build	8d8b1471985f48a8
+329	10798	0	D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-build	8d8b1471985f48a8
+10798	10833	0	_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-install	657f3ecce9f16777
+10798	10833	0	D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-install	657f3ecce9f16777
+10833	10916	7759167364859681	_sysbuild/sysbuild/images/CMakeFiles/hello_world-complete	7ec85444433f9bde
+10833	10916	7759167364859681	_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-done	7ec85444433f9bde
+10833	10916	7759167364859681	D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/CMakeFiles/hello_world-complete	7ec85444433f9bde
+10833	10916	7759167364859681	D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-done	7ec85444433f9bde

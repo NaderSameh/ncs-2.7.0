@@ -1428,11 +1428,9 @@ static int spi_nor_pm_control(const struct device *dev, enum pm_device_action ac
 #ifdef CONFIG_SPI_NOR_IDLE_IN_DPD
 	case PM_DEVICE_ACTION_SUSPEND:
 	case PM_DEVICE_ACTION_RESUME:
-printk("IDLE SHIT!!\r\n");
 		break;
 #else
 	case PM_DEVICE_ACTION_SUSPEND:
-		printk("here going to suspend\r\n");
 		acquire_device(dev);
 		rc = enter_dpd(dev);
 		release_device(dev);

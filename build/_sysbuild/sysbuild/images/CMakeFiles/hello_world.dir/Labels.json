@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/CMakeFiles/hello_world"
+		},
+		{
+			"file" : "D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/CMakeFiles/hello_world.rule"
+		},
+		{
+			"file" : "D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/CMakeFiles/hello_world-complete.rule"
+		},
+		{
+			"file" : "D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-build.rule"
+		},
+		{
+			"file" : "D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-configure.rule"
+		},
+		{
+			"file" : "D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-download.rule"
+		},
+		{
+			"file" : "D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-install.rule"
+		},
+		{
+			"file" : "D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-mkdir.rule"
+		},
+		{
+			"file" : "D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-patch.rule"
+		},
+		{
+			"file" : "D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"hello_world"
+		],
+		"name" : "hello_world"
+	}
+}

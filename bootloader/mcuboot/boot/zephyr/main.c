@@ -16,7 +16,6 @@
  * limitations under the License.
  */
 
-#include <zephyr/device.h>
 #include <assert.h>
 #include <zephyr/kernel.h>
 #include <zephyr/devicetree.h>
@@ -442,9 +441,6 @@ static void boot_serial_enter()
 }
 #endif
 
-// const struct device *gpio_device = DEVICE_DT_GET(DT_ALIAS(gpio0));
-const struct device *gpio1 = DEVICE_DT_GET(DT_ALIAS(gpio1));
-
 int main(void)
 {
     struct boot_rsp rsp;
@@ -453,12 +449,6 @@ int main(void)
 
     MCUBOOT_WATCHDOG_SETUP();
     MCUBOOT_WATCHDOG_FEED();
-
-    // gpio_pin_configure(gpio_device, 2, GPIO_OUTPUT);
-    // gpio_pin_set(gpio_device, 2, 1);
-    gpio_pin_configure(gpio1, 0, GPIO_OUTPUT);
-    gpio_pin_set(gpio1, 0, 1);
-    k_msleep(100);    
 
 #if !defined(MCUBOOT_DIRECT_XIP)
     BOOT_LOG_INF("Starting bootloader");

@@ -1,0 +1,13 @@
+# Target labels
+ hello_world
+# Source files and their labels
+D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/CMakeFiles/hello_world
+D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/CMakeFiles/hello_world.rule
+D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/CMakeFiles/hello_world-complete.rule
+D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-build.rule
+D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-configure.rule
+D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-download.rule
+D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-install.rule
+D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-mkdir.rule
+D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-patch.rule
+D:/ncs-D/v2.7.0-rc3/build/_sysbuild/sysbuild/images/hello_world-prefix/src/hello_world-stamp/hello_world-update.rule

@@ -16,7 +16,6 @@ void gnss_publish_data(const struct device *dev, const struct gnss_data *data)
 
 	STRUCT_SECTION_FOREACH(gnss_data_callback, callback) {
 		if (callback->dev == NULL || callback->dev == dev) {
-			printk("CALLING CALLBACK!");
 			callback->callback(dev, data);
 		}
 	}

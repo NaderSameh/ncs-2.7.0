@@ -128,7 +128,7 @@ int pcf8563_set_time(const struct device *dev, const struct rtc_time *new_time)
 	ret = i2c_burst_write_dt(&config->i2c, PCF8563_TIME_DATE_REGISTER,
 				 raw_time, sizeof(raw_time));
 	if (ret) {
-		printk("Error when setting time: %i", ret);
+		LOG_ERR("Error when setting time: %i", ret);
 		return ret;
 	}
 
@@ -446,18 +446,18 @@ int pcf8563_init(const struct device *dev)
 	#endif
 
 	if (!device_is_ready(config->i2c.bus)) {
-		printk("Failed to get pointer to %s device!", config->i2c.bus->name);
+		LOG_ERR("Failed to get pointer to %s device!", config->i2c.bus->name);
 		return -EINVAL;
 	}
 
 	/* Check if it's alive. */
 	ret = i2c_reg_read_byte_dt(&config->i2c, PCF8563_CONTROL1_REGISTER, &reg);
 	if (ret) {
-		printk("Failed to read from PCF85063! (err %i)", ret);
+		LOG_ERR("Failed to read from PCF85063! (err %i)", ret);
 		return -EIO;
 	}
 
-	printk("%s is initialized!", dev->name);
+	LOG_INF("%s is initialized!", dev->name);
 
 	return 0;
 }

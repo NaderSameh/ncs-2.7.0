@@ -1,0 +1,7 @@
+default: hello_world
+build_dir: D:/ncs-D/v2.7.0-rc3/build
+domains:
+  - name: hello_world
+    build_dir: D:/ncs-D/v2.7.0-rc3/build/hello_world
+flash_order:
+  - hello_world

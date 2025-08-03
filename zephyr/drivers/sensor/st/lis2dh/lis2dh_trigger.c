@@ -35,7 +35,6 @@ static inline void setup_int1(const struct device *dev,
 					enable
 					? gpio_int_cfg[cfg->int1_mode]
 					: GPIO_INT_DISABLE);
-					printk("configurge int interrupt 1 with %d, %d ",&cfg->gpio_drdy,gpio_int_cfg[cfg->int1_mode]); 
 }
 
 static int lis2dh_trigger_drdy_set(const struct device *dev,
@@ -134,7 +133,6 @@ static inline void setup_int2(const struct device *dev,
 					enable
 					? gpio_int_cfg[cfg->int2_mode]
 					: GPIO_INT_DISABLE);
-					// printk("configurge int interrupt 2 with %d, %d ",&cfg->gpio_int,gpio_int_cfg[cfg->int2_mode]); 
 }
 
 /* common handler for any motion and tap triggers */
@@ -199,11 +197,6 @@ static int lis2dh_trigger_anym_tap_set(const struct device *dev,
 	 * and first interrupt. this avoids concurrent bus context access.
 	 */
 	atomic_set_bit(&lis2dh->trig_flags, START_TRIG_INT2);
-	printk("clearing interrupt 2 \r\n");
-	printk("clearing interrupt 2 \r\n");
-	printk("clearing interrupt 2 \r\n");
-	printk("clearing interrupt 2 \r\n");
-	printk("clearing interrupt 2 \r\n");
 #if defined(CONFIG_LIS2DH_TRIGGER_OWN_THREAD)
 	k_sem_give(&lis2dh->gpio_sem);
 #elif defined(CONFIG_LIS2DH_TRIGGER_GLOBAL_THREAD)
@@ -407,7 +400,6 @@ static void lis2dh_gpio_int1_callback(const struct device *dev,
 static void lis2dh_gpio_int2_callback(const struct device *dev,
 				      struct gpio_callback *cb, uint32_t pins)
 {
-	printk("interrupt 2 generated\r\n");
 	struct lis2dh_data *lis2dh =
 		CONTAINER_OF(cb, struct lis2dh_data, gpio_int2_cb);
 

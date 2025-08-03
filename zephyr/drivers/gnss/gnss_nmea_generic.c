@@ -24,7 +24,7 @@ LOG_MODULE_REGISTER(gnss_nmea_generic, CONFIG_GNSS_LOG_LEVEL);
 
 #define UART_RX_BUF_SZ (256 + IS_ENABLED(CONFIG_GNSS_SATELLITES) * 512)
 #define UART_TX_BUF_SZ 64
-#define CHAT_RECV_BUF_SZ 1024
+#define CHAT_RECV_BUF_SZ 256
 #define CHAT_ARGV_SZ 32
 
 struct gnss_nmea_generic_config {
@@ -57,8 +57,6 @@ MODEM_CHAT_MATCHES_DEFINE(unsol_matches,
 	MODEM_CHAT_MATCH_WILDCARD("$??GSV,", ",*", gnss_nmea0183_match_gsv_callback),
 #endif
 );
-
-
 
 static int gnss_nmea_generic_resume(const struct device *dev)
 {

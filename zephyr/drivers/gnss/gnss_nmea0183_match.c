@@ -39,12 +39,10 @@ static void gnss_nmea0183_match_reset_gsv(struct gnss_nmea0183_match_data *data)
 static void gnss_nmea0183_match_publish(struct gnss_nmea0183_match_data *data)
 {
 	if ((data->gga_utc == 0) || (data->rmc_utc == 0)) {
-		printk("problem here?????????");
 		return;
 	}
 
 	if (data->gga_utc == data->rmc_utc) {
-		printk("publishing data!");
 		gnss_publish_data(data->gnss, &data->data);
 	}
 }
@@ -55,15 +53,13 @@ void gnss_nmea0183_match_gga_callback(struct modem_chat *chat, char **argv, uint
 	struct gnss_nmea0183_match_data *data = user_data;
 
 	if (gnss_nmea0183_parse_gga((const char **)argv, argc, &data->data) < 0) {
-		printk("GGA problem here?????????");
 		return;
 	}
 
 	if (gnss_nmea0183_match_parse_utc(argv, argc, &data->gga_utc) < 0) {
-		printk("GGA problem here????????? 23");
 		return;
 	}
-printk("GGA publishing data here????");
+
 	gnss_nmea0183_match_publish(data);
 }
 
@@ -71,17 +67,15 @@ void gnss_nmea0183_match_rmc_callback(struct modem_chat *chat, char **argv, uint
 				      void *user_data)
 {
 	struct gnss_nmea0183_match_data *data = user_data;
-	printk("attempting here rmc????");
+
 	if (gnss_nmea0183_parse_rmc((const char **)argv, argc, &data->data) < 0) {
-		printk("failed here????");
 		return;
 	}
 
 	if (gnss_nmea0183_match_parse_utc(argv, argc, &data->rmc_utc) < 0) {
-		printk("failed here???? 2");
 		return;
 	}
-	printk("publishing data here????");
+
 	gnss_nmea0183_match_publish(data);
 }
 

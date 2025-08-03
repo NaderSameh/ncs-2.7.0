@@ -582,7 +582,6 @@ static void modem_chat_process_byte(struct modem_chat *chat, uint8_t byte)
 {
 	/* Validate receive buffer not overrun */
 	if (chat->receive_buf_size == chat->receive_buf_len) {
-		printk("RECEIVE BUFFER SIZE %d\r\n\r\n");
 		LOG_WRN("receive buffer overrun");
 		modem_chat_parse_reset(chat);
 		return;
@@ -696,7 +695,6 @@ static bool modem_chat_discard_byte(struct modem_chat *chat, uint8_t byte)
 /* Process chunk of received bytes */
 static void modem_chat_process_bytes(struct modem_chat *chat)
 {
-	printk("PROCESSING %d BYTES\r\n", chat->work_buf_len);
 	for (uint16_t i = 0; i < chat->work_buf_len; i++) {
 		if (modem_chat_discard_byte(chat, chat->work_buf[i])) {
 			continue;

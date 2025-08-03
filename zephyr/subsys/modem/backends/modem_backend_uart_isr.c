@@ -106,6 +106,7 @@ static void modem_backend_uart_isr_irq_handler(const struct device *uart, void *
 static int modem_backend_uart_isr_open(void *data)
 {
 	struct modem_backend_uart *backend = (struct modem_backend_uart *)data;
+
 	ring_buf_reset(&backend->isr.receive_rdb[0]);
 	ring_buf_reset(&backend->isr.receive_rdb[1]);
 	ring_buf_reset(&backend->isr.transmit_rb);
@@ -218,6 +219,7 @@ static int modem_backend_uart_isr_receive(void *data, uint8_t *buf, size_t size)
 
 	read_bytes += ring_buf_get(&backend->isr.receive_rdb[receive_rdb_unused],
 				   &buf[read_bytes], (size - read_bytes));
+
 	return (int)read_bytes;
 }
 

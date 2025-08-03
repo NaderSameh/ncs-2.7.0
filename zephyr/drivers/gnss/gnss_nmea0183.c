@@ -392,38 +392,32 @@ int gnss_nmea0183_parse_rmc(const char **argv, uint16_t argc, struct gnss_data *
 	__ASSERT(data != NULL, "data argument must be provided");
 
 	if (argc < 10)  {
-		printk("arc less than 10\r\n");
 		return -EINVAL;
 	}
 
 	/* Validate GNSS has fix */
 	if (argv[2][0] == 'V') {
-		printk("no fix\r\n");
 		return 0;
 	}
 
 	if (argv[2][0] != 'A') {
-		printk("invalid fix status %c\r\n", argv[2][0]);
 		return -EINVAL;
 	}
 
 	/* Parse UTC time */
 	if ((gnss_nmea0183_parse_hhmmss(argv[1], &data->utc) < 0)) {
-		printk("invalid UTC time %s\r\n", argv[1]);
 		return -EINVAL;
 	}
 
 	/* Validate cardinal directions */
 	if (((argv[4][0] != 'N') && (argv[4][0] != 'S')) ||
 	    ((argv[6][0] != 'E') && (argv[6][0] != 'W'))) {
-			printk("invalid cardinal directions %c %c\r\n", argv[4][0], argv[6][0]);
 		return -EINVAL;
 	}
 
 	/* Parse coordinates */
 	if ((gnss_nmea0183_ddmm_mmmm_to_ndeg(argv[3], &data->nav_data.latitude) < 0) ||
 	    (gnss_nmea0183_ddmm_mmmm_to_ndeg(argv[5], &data->nav_data.longitude) < 0)) {
-			printk("invalid coordinates %s %s\r\n", argv[3], argv[5]);
 		return -EINVAL;
 	}
 

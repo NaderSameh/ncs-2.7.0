@@ -422,7 +422,7 @@ int lis2dh_init(const struct device *dev)
 	}
 #endif
 
-	printk("fs=%d, odr=0x%x lp_en=0x%x scale=%d", 1 << (LIS2DH_FS_IDX + 1), LIS2DH_ODR_IDX,
+	LOG_INF("fs=%d, odr=0x%x lp_en=0x%x scale=%d", 1 << (LIS2DH_FS_IDX + 1), LIS2DH_ODR_IDX,
 		(uint8_t)LIS2DH_LP_EN_BIT, lis2dh->scale);
 
 	/* enable accel measurements and set power mode and data rate */
