@@ -3,9 +3,9 @@ import time
 import pytest
 import os
 import signal
+import platform
 from pathlib import Path
 import socket
-
 
 zephyr_base = Path(os.environ["ZEPHYR_BASE"])
 
@@ -29,7 +29,7 @@ def qemu(elf_path):
         "qemu-system-arm",
         "-M", "lm3s6965evb",
         "-cpu", "cortex-m3",
-        "-kernel", elf_path,
+        "-kernel", str(elf_path),
         "-serial", "mon:stdio",
         "-serial", "tcp::1234,server,nowait",
         "-serial", "tcp::1235,server,nowait",
@@ -37,12 +37,18 @@ def qemu(elf_path):
     ]
 
     print(f"Starting QEMU with: {elf_path}")
-    proc = subprocess.Popen(
-        qemu_cmd,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        creationflags=subprocess.CREATE_NEW_PROCESS_GROUP  # Windows-friendly
-    )
+
+    popen_kwargs = {
+        "stdout": subprocess.PIPE,
+        "stderr": subprocess.PIPE
+    }
+
+    # Set Windows-specific flag if running on Windows
+    if platform.system() == "Windows":
+        popen_kwargs["creationflags"] = subprocess.CREATE_NEW_PROCESS_GROUP
+
+    proc = subprocess.Popen(qemu_cmd, **popen_kwargs)
+
     wait_for_port(1234)
     wait_for_port(1235)
 
@@ -51,7 +57,10 @@ def qemu(elf_path):
     yield proc  # test runs here
 
     # Teardown: kill QEMU
-    proc.send_signal(signal.CTRL_BREAK_EVENT)
+    if platform.system() == "Windows":
+        proc.send_signal(signal.CTRL_BREAK_EVENT)
+    else:
+        proc.send_signal(signal.SIGTERM)
 
     proc.wait()
     print("QEMU shut down.")
