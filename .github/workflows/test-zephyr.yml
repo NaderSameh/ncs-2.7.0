@@ -9,7 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    container: zephyrprojectrtos/ci:v0.24.5
+    env:
+      CMAKE_PREFIX_PATH: /opt/toolchains
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -24,7 +26,8 @@ jobs:
 
       - name: Install west and Python deps
         run: |
-          pip3 install west
+          pip3 install -U west
+          west update
           pip3 install -r zephyr/scripts/requirements.txt
 
       - name: Export Zephyr environment
@@ -34,4 +37,5 @@ jobs:
 
       - name: Build hello_world for QEMU
         run: |
+          west build -b qemu_x86 zephyr/samples/hello_world
           pytest ./zephyr/pytest-tests/pytest-reference.py -s
