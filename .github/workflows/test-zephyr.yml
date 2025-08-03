@@ -30,7 +30,7 @@ jobs:
           pip3 install -r zephyr/scripts/requirements.txt
 
       - name: Build hello_world for QEMU
+        shell: bash
         run: |
-          . zephyr/zephyr-env.sh
-          west build -b qemu_x86 zephyr/samples/hello_world
+          source zephyr/zephyr-env.sh
           pytest ./zephyr/pytest-tests/pytest-reference.py -s
