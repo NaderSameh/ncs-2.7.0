@@ -28,6 +28,7 @@ jobs:
     - name: Build Zephyr sample using west
       run: |
         unset ZEPHYR_BASE                    # Unset any global override
+        west init -l .
         source zephyr/zephyr-env.sh         # Sets ZEPHYR_BASE from .west automatically
         west build zephyr/samples/hello_world -b qemu_cortex_m3
 
