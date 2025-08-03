@@ -27,8 +27,8 @@ jobs:
 
     - name: Build Zephyr sample using west
       run: |
-        west update
         source zephyr/zephyr-env.sh
+        west init -l .      # 🛠 Required to activate west extensions
         west build  ./zephyr/samples/hello_world -b qemu_cortex_m3
 
     - name: Run Pytest on QEMU
