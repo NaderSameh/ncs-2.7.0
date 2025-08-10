@@ -74,6 +74,10 @@ enum cellular_modem_info_type {
 	CELLULAR_MODEM_INFO_SIM_IMSI,
 	/** Integrated Circuit Card Identification Number (SIM) */
 	CELLULAR_MODEM_INFO_SIM_ICCID,
+	/** Integrated Circuit Card Identification Number Physical (SIM) */
+	CELLULAR_MODEM_INFO_PSIM_ICCID,
+	/** Integrated Circuit Card Identification Number Electronic (SIM) */
+	CELLULAR_MODEM_INFO_ESIM_ICCID,
 };
 
 enum cellular_registration_status {
@@ -101,13 +105,21 @@ typedef int (*cellular_api_get_signal)(const struct device *dev,
 
 /** API for getting modem information */
 typedef int (*cellular_api_get_modem_info)(const struct device *dev,
-					   const enum cellular_modem_info_type type,
-					   char *info, size_t size);
+					   const enum cellular_modem_info_type type, char *info,
+					   size_t size);
 
 /** API for getting registration status */
 typedef int (*cellular_api_get_registration_status)(const struct device *dev,
 						    enum cellular_access_technology tech,
 						    enum cellular_registration_status *status);
+
+typedef int (*cellular_api_conf_gps)(const struct device *dev);
+typedef int (*cellular_api_get_gps)(const struct device *dev);
+typedef int (*cellular_api_OTA)(const struct device *dev);
+typedef int (*cellular_api_Cellsearch)(const struct device *dev);
+typedef int (*cellular_api_get_lbs)(const struct device *dev);
+typedef int (*cellular_api_suspend_gps)(const struct device *dev);
+typedef int (*cellular_api_Subs_https)(const struct device *dev);
 
 /** Cellular driver API */
 __subsystem struct cellular_driver_api {
@@ -116,6 +128,13 @@ __subsystem struct cellular_driver_api {
 	cellular_api_get_signal get_signal;
 	cellular_api_get_modem_info get_modem_info;
 	cellular_api_get_registration_status get_registration_status;
+	cellular_api_conf_gps conf_gps;
+	cellular_api_get_gps get_gps_location;
+	cellular_api_get_lbs get_lbs_location;
+	cellular_api_suspend_gps suspend_gps;
+	cellular_api_OTA over_the_air_update;
+	cellular_api_Cellsearch cell_search;
+	cellular_api_Subs_https subs_https;
 };
 
 /**

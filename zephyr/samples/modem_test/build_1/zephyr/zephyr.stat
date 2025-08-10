@@ -1,0 +1,91 @@
+ELF Header:
+  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF32
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           ARM
+  Version:                           0x1
+  Entry point address:               0x23c5
+  Start of program headers:          52 (bytes into file)
+  Start of section headers:          2837892 (bytes into file)
+  Flags:                             0x5000200, Version5 EABI, soft-float ABI
+  Size of this header:               52 (bytes)
+  Size of program headers:           32 (bytes)
+  Number of program headers:         6
+  Size of section headers:           40 (bytes)
+  Number of section headers:         45
+  Section header string table index: 44
+
+Section Headers:
+  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            00000000 000000 000000 00      0   0  0
+  [ 1] rom_start         PROGBITS        00000000 0000f8 0000ec 00 WAX  0   0  4
+  [ 2] text              PROGBITS        000000ec 0001e4 01e7e8 00  AX  0   0  4
+  [ 3] .ARM.exidx        ARM_EXIDX       0001e8d4 01e9cc 000008 00  AL  2   0  4
+  [ 4] initlevel         PROGBITS        0001e8dc 01e9d4 0000d8 00   A  0   0  4
+  [ 5] device_area       PROGBITS        0001e9b4 01eaac 000168 00   A  0   0  4
+  [ 6] sw_isr_table      PROGBITS        0001eb1c 01ec14 000158 00  WA  0   0  4
+  [ 7] _static_thre[...] PROGBITS        0001ec78 01ed70 000030 00  WA  0   0  8
+  [ 8] net_socket_r[...] PROGBITS        0001eca8 01eda0 000010 00   A  0   0  4
+  [ 9] ppp_protocol[...] PROGBITS        0001ecb8 01edb0 000070 00   A  0   0  4
+  [10] net_socket_s[...] PROGBITS        0001ed28 01ee20 000010 00   A  0   0  4
+  [11] log_const_area    PROGBITS        0001ed38 01ee30 0000a8 00   A  0   0  4
+  [12] log_backend_area  PROGBITS        0001ede0 01eed8 000010 00   A  0   0  4
+  [13] tbss              NOBITS          0001edf0 01eee8 000008 00 WAT  0   0  4
+  [14] rodata            PROGBITS        0001edf0 01eee8 00298c 00   A  0   0  8
+  [15] .ramfunc          PROGBITS        20000000 023dd4 000000 00   W  0   0  1
+  [16] datas             PROGBITS        20000000 021878 0021bf 00  WA  0   0  8
+  [17] device_states     PROGBITS        200021bf 023a37 00001e 00  WA  0   0  1
+  [18] log_msg_ptr_area  PROGBITS        200021e0 023a58 000004 00  WA  0   0  4
+  [19] k_mem_slab_area   PROGBITS        200021e4 023a5c 000054 00  WA  0   0  4
+  [20] k_mutex_area      PROGBITS        20002238 023ab0 0000c8 00  WA  0   0  4
+  [21] k_msgq_area       PROGBITS        20002300 023b78 000030 00  WA  0   0  4
+  [22] k_sem_area        PROGBITS        20002330 023ba8 000018 00  WA  0   0  4
+  [23] k_fifo_area       PROGBITS        20002348 023bc0 000018 00  WA  0   0  4
+  [24] k_condvar_area    PROGBITS        20002360 023bd8 000008 00  WA  0   0  4
+  [25] net_buf_pool_area PROGBITS        20002368 023be0 0000b0 00  WA  0   0  4
+  [26] net_if_area       PROGBITS        20002418 023c90 0000cc 00  WA  0   0  4
+  [27] net_if_dev_area   PROGBITS        200024e4 023d5c 000054 00  WA  0   0  4
+  [28] net_l2_area       PROGBITS        20002538 023db0 000020 00   A  0   0  4
+  [29] bss               NOBITS          20002558 023dd8 001fe2 00  WA  0   0  8
+  [30] noinit            NOBITS          20004540 023dd8 006658 00  WA  0   0  8
+  [31] .comment          PROGBITS        00000000 023dd4 000022 01  MS  0   0  1
+  [32] .debug_aranges    PROGBITS        00000000 023df8 004088 00      0   0  8
+  [33] .debug_info       PROGBITS        00000000 027e80 12da9c 00      0   0  1
+  [34] .debug_abbrev     PROGBITS        00000000 15591c 023c9c 00      0   0  1
+  [35] .debug_line       PROGBITS        00000000 1795b8 0652a6 00      0   0  1
+  [36] .debug_frame      PROGBITS        00000000 1de860 00c610 00      0   0  4
+  [37] .debug_str        PROGBITS        00000000 1eae70 01b011 01  MS  0   0  1
+  [38] .debug_loc        PROGBITS        00000000 205e81 07bf52 00      0   0  1
+  [39] .debug_ranges     PROGBITS        00000000 281dd8 011820 00      0   0  8
+  [40] .ARM.attributes   ARM_ATTRIBUTES  00000000 2935f8 000031 00      0   0  1
+  [41] .last_section     PROGBITS        00023cd4 023dd0 000004 00   A  0   0  1
+  [42] .symtab           SYMTAB          00000000 29362c 014010 10     43 3531  4
+  [43] .strtab           STRTAB          00000000 2a763c 00d50f 00      0   0  1
+  [44] .shstrtab         STRTAB          00000000 2b4b4b 000238 00      0   0  1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  D (mbind), y (purecode), p (processor specific)
+
+Program Headers:
+  Type           Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
+  EXIDX          0x01e9cc 0x0001e8d4 0x0001e8d4 0x00008 0x00008 R   0x4
+  LOAD           0x0000f8 0x00000000 0x00000000 0x2177c 0x2177c RWE 0x8
+  LOAD           0x021878 0x20000000 0x0002177c 0x02558 0x02558 RW  0x8
+  LOAD           0x023dd0 0x00023cd4 0x00023cd4 0x00004 0x00004 R   0x1
+  LOAD           0x000000 0x20002558 0x20002558 0x00000 0x08640 RW  0x8
+  TLS            0x01eee8 0x0001edf0 0x0001edf0 0x00000 0x00008 R   0x4
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     .ARM.exidx 
+   01     rom_start text .ARM.exidx initlevel device_area sw_isr_table _static_thread_data_area net_socket_register_area ppp_protocol_handler_area net_socket_service_desc_area log_const_area log_backend_area rodata 
+   02     datas device_states log_msg_ptr_area k_mem_slab_area k_mutex_area k_msgq_area k_sem_area k_fifo_area k_condvar_area net_buf_pool_area net_if_area net_if_dev_area net_l2_area 
+   03     .last_section 
+   04     bss noinit 
+   05     tbss 
