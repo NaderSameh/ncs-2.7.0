@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.ejs": "html",
+        "*.go": "go",
+        "chat.h": "c"
+    },
+    "nrf-connect.applications": [
+        "${workspaceFolder}\\zephyr\\samples\\modem_test"
+    ]
+}

@@ -422,6 +422,7 @@ static void modem_ppp_process_handler(struct k_work *item)
 
 	for (int i = 0; i < ret; i++) {
 		modem_ppp_process_received_byte(ppp, ppp->receive_buf[i]);
+		LOG_INF("Received byte: 0x%02x", ppp->receive_buf[i]);
 	}
 
 	k_work_submit(&ppp->process_work);

@@ -90,8 +90,8 @@ typedef enum {
 // int8_t fifoPush(ST_message_t *msg);
 // uint16_t fifoPull(char *str);
 
-// unsigned long get_unix_ts(void){
-//     return (unsigned long)10101010101;
-// }
+unsigned long get_unix_ts(void){
+    return (unsigned long)10101010101;
+}
 
 #endif

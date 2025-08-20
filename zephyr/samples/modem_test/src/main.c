@@ -102,13 +102,12 @@ int StartModem(void) {
 
     ret = net_mgmt_event_wait_on_iface(net_if_get_default(),
                                         NET_EVENT_L4_CONNECTED, &raised_event,
-                                        &info, &info_len, K_SECONDS(12));
-LOG_ERR("OK!!");
-
+                                        &info, &info_len, K_SECONDS(120));
     if (ret != 0) {
         LOG_INF("L4 was not connected in time\n");
         return -1;
     } else{
+      LOG_ERR("HEREEEEEEE!!!!");
         printk("Raised event = %X\n", raised_event);
         // printk("Raised event = %X\n", raised_event);
         if (raised_event == 0xF1140003) {
@@ -132,7 +131,7 @@ void ReportMessages(void) {
     if (ret != 0) {
         LOG_ERR("Failed to start modem, ret = %d", ret);
     }
-    LOG_ERR("HEREEEEEEEEEE!");
+    LOG_ERR("ENDEDDDDD????!");
     modem_cellular_clock(modem);
     modem_cellular_get_lbs_location(modem);
     k_msleep(100000);

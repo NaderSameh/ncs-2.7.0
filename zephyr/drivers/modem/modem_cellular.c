@@ -35,7 +35,7 @@ LOG_MODULE_REGISTER(modem_cellular, CONFIG_MODEM_LOG_LEVEL);
 #include "D:\ncs-D\v2.7.0-rc3\zephyr\samples\modem_test\src\FIFO.h"
 
 
-#define MODEM_CELLULAR_PERIODIC_SCRIPT_TIMEOUT K_MSEC(8000)
+#define MODEM_CELLULAR_PERIODIC_SCRIPT_TIMEOUT K_MSEC(20000)
 
 #define MODEM_CELLULAR_DATA_IMEI_LEN (16)
 #define MODEM_CELLULAR_DATA_MODEL_ID_LEN (65)
@@ -1165,8 +1165,8 @@ struct modem_chat_script_chat init_script_duo_sim_cmds[] = {
     MODEM_CHAT_SCRIPT_CMD_RESP(simMode, ok_match),
 
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+QCCID", qccid_match),
-    MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
-
+    // MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
+    // MODEM_CHAT_SCRIPT_CMD_RESP_NONE("", 300),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CFUN=4", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CREG=1", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGREG=1", ok_match),
@@ -2993,7 +2993,7 @@ MODEM_CHAT_SCRIPT_CMDS_DEFINE(
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+QDSIM=0", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP_MULT("AT+QCCID", psim_qccid_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
-    MODEM_CHAT_SCRIPT_CMD_RESP_NONE("", 1000),
+    MODEM_CHAT_SCRIPT_CMD_RESP_NONE("", 30),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+QCFG=\"nwscanmode\",0,1", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CFUN=4", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CREG=1", ok_match),
