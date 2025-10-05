@@ -1,6 +1,7 @@
 import socket
 import time
 import pytest
+from typing import List
 from conftest import zephyr_base
 from cmux_frames import build_ua, build_uih, split_cmux_frames, parse_cmux_frame, build_uih_frame
 from ppp_stub import (
@@ -109,7 +110,7 @@ class CMUXStream:
     def __init__(self) -> None:
         self._buf = bytearray()
 
-    def feed(self, data: bytes) -> list[bytes]:
+    def feed(self, data: bytes) -> List[bytes]:
         if not data:
             return []
         self._buf.extend(data)
