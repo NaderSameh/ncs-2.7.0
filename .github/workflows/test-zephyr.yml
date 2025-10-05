@@ -25,10 +25,16 @@ jobs:
             xz-utils file make gcc gcc-multilib g++-multilib libsdl2-dev
           sudo apt-get install -y qemu-system-arm
 
+      - name: Set up Python 3.13.0
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13.0'
+
       - name: Install west and Python deps
         run: |
-          pip3 install -U west
-          pip3 install -r zephyr/scripts/requirements.txt
+          python -m pip install --upgrade pip
+          pip install -U west
+          pip install -r zephyr/scripts/requirements.txt
           pip install pynmea2
 
       - name: Build hello_world for QEMU
