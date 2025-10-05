@@ -1,6 +1,7 @@
 # cmux_frames.py
 import socket
 import struct
+from typing import List
 
 
 # UIH frame control byte mask
@@ -106,7 +107,7 @@ def _crc8_itu_reflected(data: bytes) -> int:
     crc = _bit_reverse8(crc) ^ 0xFF  # reflect output, xorout
     return crc
 
-def split_cmux_frames(stream: bytes) -> list[bytes]:
+def split_cmux_frames(stream: bytes) -> List[bytes]:
     """Return a list of raw frames found between FLAG (0xF9) delimiters."""
     frames, i = [], 0
     while True:
