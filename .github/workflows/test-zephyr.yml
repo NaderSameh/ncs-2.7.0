@@ -35,4 +35,4 @@ jobs:
         shell: bash
         run: |
           source zephyr/zephyr-env.sh
-          pytest ./zephyr/pytest-tests/pytest-reference.py -s
+          pytest ./zephyr/pytest-tests/modem-test.py -s
