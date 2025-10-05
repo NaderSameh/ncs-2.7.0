@@ -9,6 +9,7 @@
 #include <zephyr/drivers/cellular.h>
 #include <zephyr/drivers/flash.h>
 #include <zephyr/drivers/gpio.h>
+#include <zephyr/drivers/rtc.h>
 #include <zephyr/kernel.h>
 #include <zephyr/modem/backend/uart.h>
 #include <zephyr/modem/chat.h>
@@ -19,7 +20,6 @@
 #include <zephyr/net/ppp.h>
 #include <zephyr/pm/device.h>
 #include <zephyr/sys/atomic.h>
-#include <zephyr/drivers/rtc.h>
 
 #include <zephyr/sys/timeutil.h>
 
@@ -32,8 +32,7 @@ LOG_MODULE_REGISTER(modem_cellular, CONFIG_MODEM_LOG_LEVEL);
 
 // #include "D:\Cypod\cylockv2i7.2\src\FIFO.h"
 // #include "D:\ncs-D\cylockv2i7.2\src\FIFO.h"
-#include "D:\ncs-D\v2.7.0-rc3\zephyr\samples\modem_test\src\FIFO.h"
-
+// #include "D:\ncs-D\v2.7.0-rc3\zephyr\samples\modem_test\src\FIFO.h"
 
 #define MODEM_CELLULAR_PERIODIC_SCRIPT_TIMEOUT K_MSEC(20000)
 
@@ -470,94 +469,94 @@ static void get_subs_data(struct modem_chat *chat, char **argv, uint16_t argc,
     if (ret & (1 << 10)) {
       // Activation_Request = temp_results.activate_sending;
     }
-	#ifdef CONFIG_MODEM_CELLULAR_TAGS
-		if (ret & (1 << 11)) {
-		my_Tags.Assigned_Tags_Count = 1;
-		if (strcmp(my_Tags.Tags_Info.Ble_CyTag_Ids[0], temp_results.id0) != 0) {
-			strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[0], temp_results.id0);
-			printk("id0: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[0]);
-			for (int i = 0; i < Number_Of_Tags_Per_CyTrack; i++) {
-			my_Tags.Tags_Info.Skip_Count[i] = 0;
-			}
-		}
-		} else {
-		my_Tags.Assigned_Tags_Count = 0;
-		memset(my_Tags.Tags_Info.Ble_CyTag_Ids[0], 0,
-				sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[0]));
-		}
-		if (ret & (1 << 12)) {
-		my_Tags.Assigned_Tags_Count = 2;
-		strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[1], temp_results.id1);
-		printk("id1: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[1]);
-		} else {
-		memset(my_Tags.Tags_Info.Ble_CyTag_Ids[1], 0,
-				sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[1]));
-		}
-		if (ret & (1 << 13)) {
-		my_Tags.Assigned_Tags_Count = 3;
-		strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[2], temp_results.id2);
-		printk("id2: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[2]);
-		} else {
-		memset(my_Tags.Tags_Info.Ble_CyTag_Ids[2], 0,
-				sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[2]));
-		}
-		if (ret & (1 << 14)) {
-		my_Tags.Assigned_Tags_Count = 4;
-		strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[3], temp_results.id3);
-		printk("id3: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[3]);
-		} else {
-		memset(my_Tags.Tags_Info.Ble_CyTag_Ids[3], 0,
-				sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[3]));
-		}
-		if (ret & (1 << 15)) {
-		my_Tags.Assigned_Tags_Count = 5;
-		strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[4], temp_results.id4);
-		printk("id4: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[4]);
-		} else {
-		memset(my_Tags.Tags_Info.Ble_CyTag_Ids[4], 0,
-				sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[4]));
-		}
-		if (ret & (1 << 16)) {
-		my_Tags.Assigned_Tags_Count = 6;
-		strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[5], temp_results.id5);
-		printk("id5: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[5]);
-		} else {
-		memset(my_Tags.Tags_Info.Ble_CyTag_Ids[5], 0,
-				sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[5]));
-		}
-		if (ret & (1 << 17)) {
-		my_Tags.Assigned_Tags_Count = 7;
-		strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[6], temp_results.id6);
-		printk("id6: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[6]);
-		} else {
-		memset(my_Tags.Tags_Info.Ble_CyTag_Ids[6], 0,
-				sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[6]));
-		}
-		if (ret & (1 << 18)) {
-		my_Tags.Assigned_Tags_Count = 8;
-		strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[7], temp_results.id7);
-		printk("id7: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[7]);
-		} else {
-		memset(my_Tags.Tags_Info.Ble_CyTag_Ids[7], 0,
-				sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[7]));
-		}
-		if (ret & (1 << 19)) {
-		my_Tags.Assigned_Tags_Count = 9;
-		strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[8], temp_results.id8);
-		printk("id8: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[8]);
-		} else {
-		memset(my_Tags.Tags_Info.Ble_CyTag_Ids[8], 0,
-				sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[8]));
-		}
-		if (ret & (1 << 20)) {
-		my_Tags.Assigned_Tags_Count = 10;
-		strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[9], temp_results.id9);
-		printk("id9: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[9]);
-		} else {
-		memset(my_Tags.Tags_Info.Ble_CyTag_Ids[9], 0,
-				sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[9]));
-		}
-	#endif
+#ifdef CONFIG_MODEM_CELLULAR_TAGS
+    if (ret & (1 << 11)) {
+      my_Tags.Assigned_Tags_Count = 1;
+      if (strcmp(my_Tags.Tags_Info.Ble_CyTag_Ids[0], temp_results.id0) != 0) {
+        strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[0], temp_results.id0);
+        printk("id0: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[0]);
+        for (int i = 0; i < Number_Of_Tags_Per_CyTrack; i++) {
+          my_Tags.Tags_Info.Skip_Count[i] = 0;
+        }
+      }
+    } else {
+      my_Tags.Assigned_Tags_Count = 0;
+      memset(my_Tags.Tags_Info.Ble_CyTag_Ids[0], 0,
+             sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[0]));
+    }
+    if (ret & (1 << 12)) {
+      my_Tags.Assigned_Tags_Count = 2;
+      strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[1], temp_results.id1);
+      printk("id1: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[1]);
+    } else {
+      memset(my_Tags.Tags_Info.Ble_CyTag_Ids[1], 0,
+             sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[1]));
+    }
+    if (ret & (1 << 13)) {
+      my_Tags.Assigned_Tags_Count = 3;
+      strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[2], temp_results.id2);
+      printk("id2: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[2]);
+    } else {
+      memset(my_Tags.Tags_Info.Ble_CyTag_Ids[2], 0,
+             sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[2]));
+    }
+    if (ret & (1 << 14)) {
+      my_Tags.Assigned_Tags_Count = 4;
+      strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[3], temp_results.id3);
+      printk("id3: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[3]);
+    } else {
+      memset(my_Tags.Tags_Info.Ble_CyTag_Ids[3], 0,
+             sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[3]));
+    }
+    if (ret & (1 << 15)) {
+      my_Tags.Assigned_Tags_Count = 5;
+      strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[4], temp_results.id4);
+      printk("id4: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[4]);
+    } else {
+      memset(my_Tags.Tags_Info.Ble_CyTag_Ids[4], 0,
+             sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[4]));
+    }
+    if (ret & (1 << 16)) {
+      my_Tags.Assigned_Tags_Count = 6;
+      strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[5], temp_results.id5);
+      printk("id5: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[5]);
+    } else {
+      memset(my_Tags.Tags_Info.Ble_CyTag_Ids[5], 0,
+             sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[5]));
+    }
+    if (ret & (1 << 17)) {
+      my_Tags.Assigned_Tags_Count = 7;
+      strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[6], temp_results.id6);
+      printk("id6: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[6]);
+    } else {
+      memset(my_Tags.Tags_Info.Ble_CyTag_Ids[6], 0,
+             sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[6]));
+    }
+    if (ret & (1 << 18)) {
+      my_Tags.Assigned_Tags_Count = 8;
+      strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[7], temp_results.id7);
+      printk("id7: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[7]);
+    } else {
+      memset(my_Tags.Tags_Info.Ble_CyTag_Ids[7], 0,
+             sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[7]));
+    }
+    if (ret & (1 << 19)) {
+      my_Tags.Assigned_Tags_Count = 9;
+      strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[8], temp_results.id8);
+      printk("id8: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[8]);
+    } else {
+      memset(my_Tags.Tags_Info.Ble_CyTag_Ids[8], 0,
+             sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[8]));
+    }
+    if (ret & (1 << 20)) {
+      my_Tags.Assigned_Tags_Count = 10;
+      strcpy(my_Tags.Tags_Info.Ble_CyTag_Ids[9], temp_results.id9);
+      printk("id9: %s\r\n", my_Tags.Tags_Info.Ble_CyTag_Ids[9]);
+    } else {
+      memset(my_Tags.Tags_Info.Ble_CyTag_Ids[9], 0,
+             sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[9]));
+    }
+#endif
     // flashSaveAssignedTags();
   }
   return;
@@ -625,12 +624,12 @@ static void get_file_data(struct modem_chat *chat, char **argv, uint16_t argc,
     printk(" %d %% done\r\n", (filepointer * 100 / fileSize));
     printk("file done writing\r\n");
     k_msleep(2000);
-	#ifdef CONFIG_MCUBOOT
+#ifdef CONFIG_MCUBOOT
     int rc = boot_request_upgrade(1);
     gpio_pin_set(gpio1, 0, 1);
     k_msleep(1000);
     printk("rc = %d \r\n", rc);
-	#endif
+#endif
     NVIC_SystemReset();
 
     return;
@@ -769,15 +768,18 @@ unsigned long unixtime(struct tm crtime) {
 unsigned long convert_to_unix_time(char *date_str) {
   struct rtc_time tm;
   int offset_quarters;
-
+  LOG_ERR("Date string from modem: %s", date_str);
   // Parse the date and time components
   sscanf(date_str, "\"%2d/%2d/%2d,%2d:%2d:%2d+%2d\"", &tm.tm_year, &tm.tm_mon,
          &tm.tm_mday, &tm.tm_hour, &tm.tm_min, &tm.tm_sec, &offset_quarters);
   tm.tm_mon -= 1;
   tm.tm_year += 100;
+  LOG_ERR("Parsed date: %04d-%02d-%02d %02d:%02d:%02d, Offset: %d quarters",
+          tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min,
+          tm.tm_sec, offset_quarters);
 #ifdef CONFIG_MODEM_RTC
   rtc_set_time(rtc, &tm);
-  #endif
+#endif
   struct tm *tm2 = rtc_time_to_tm(&tm);
   // Adjust year and month to match struct tm format
   // tm2->tm_year += 2000; // tm_year is years since 1900
@@ -794,7 +796,6 @@ unsigned long convert_to_unix_time(char *date_str) {
   printk("\r\nepoch = %ld\r\n", epoch);
   return epoch;
 }
-
 
 static void modem_cellular_chat_on_clock(struct modem_chat *chat, char **argv,
                                          uint16_t argc, void *user_data) {
@@ -1175,8 +1176,7 @@ struct modem_chat_script_chat init_script_duo_sim_cmds[] = {
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CEREG?", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGREG?", ok_match),
 
-    MODEM_CHAT_SCRIPT_CMD_RESP_NONE("AT+CMUX=0,0,5,127,10,3,30,10,2", 120)
-};
+    MODEM_CHAT_SCRIPT_CMD_RESP_NONE("AT+CMUX=0,0,5,127,10,3,30,10,2", 120)};
 
 MODEM_CHAT_SCRIPT_DEFINE(init_script_duo_sim_script, init_script_duo_sim_cmds,
                          abort_matches, modem_cellular_chat_callback_handler,
@@ -2317,7 +2317,7 @@ static void modem_cellular_chat_lbs(struct modem_chat *chat, char **argv,
   if (argc == 4) {
     // printk("Lat LBS: %s\n", argv[2]);
     // printk("Long LBS: %s\n", argv[3]);
-    clockUnix = get_unix_ts();
+    // clockUnix = get_unix_ts();
     sprintf(buffer, "{\"T\":%ld,\"lat_lbs\":%s,\"lng_lbs\":%s}", clockUnix,
             argv[2], argv[3]);
     printk("%s\r\n", buffer);
@@ -2664,7 +2664,7 @@ static void modem_cellular_chat_qeng(struct modem_chat *chat, char **argv,
   printk("rssi : %s\n", argv[11]);
 
   buffer[0] = '\0';
-  clockUnix = get_unix_ts();
+  // clockUnix = get_unix_ts();
   sprintf(buffer,
           "[{T:%d,"
           "\"RT\":%s,"

@@ -1,3 +1,0 @@
-osource "d:/ncs-d/v2.7.0-rc3/zephyr/samples/modem_test/boards/shields/*/Kconfig.defconfig"
-osource "d:/ncs-d/cylockv2i7.2/boards/shields/*/Kconfig.defconfig"
-osource "D:/ncs-D/v2.7.0-rc3/nrf/boards/shields/*/Kconfig.defconfig"

@@ -13,7 +13,7 @@
 #include "gnss_parse.h"
 #include "gnss_nmea0183.h"
 #include "gnss_nmea0183_match.h"
-
+bool AntennaPresent = false;
 static int gnss_nmea0183_match_parse_utc(char **argv, uint16_t argc, uint32_t *utc)
 {
 	int64_t i64;
@@ -77,6 +77,22 @@ void gnss_nmea0183_match_rmc_callback(struct modem_chat *chat, char **argv, uint
 	}
 
 	gnss_nmea0183_match_publish(data);
+}
+// NEW function to handle antenna status
+void gnss_nmea0183_match_txt_callback(struct modem_chat *chat, char **argv, uint16_t argc,
+                                      void *user_data)
+{
+    for (int i = 0; i < argc; i++) {
+        if (argv[i] && strstr(argv[i], "ANTSTATUS=OK")) {
+            AntennaPresent = true;
+            printk("=============================Antenna status: OK=============================\n");
+            return;
+        } else if (argv[i] && strstr(argv[i], "ANTSTATUS=OPEN")) {
+            AntennaPresent = false;
+            printk("=============================Antenna status: OPEN=============================\n");
+            return;
+        }
+    }
 }
 
 #if CONFIG_GNSS_SATELLITES

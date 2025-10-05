@@ -56,6 +56,7 @@ MODEM_CHAT_MATCHES_DEFINE(unsol_matches,
 #if CONFIG_GNSS_SATELLITES
 	MODEM_CHAT_MATCH_WILDCARD("$??GSV,", ",*", gnss_nmea0183_match_gsv_callback),
 #endif
+    MODEM_CHAT_MATCH_WILDCARD("$GPTXT,", ",*", gnss_nmea0183_match_txt_callback), // NEW for active antenna present 
 );
 
 static int gnss_nmea_generic_resume(const struct device *dev)

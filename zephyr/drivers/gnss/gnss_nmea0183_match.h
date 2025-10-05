@@ -96,6 +96,9 @@ void gnss_nmea0183_match_gsv_callback(struct modem_chat *chat, char **argv, uint
  * @param data GNSS NMEA0183 match instance to initialize
  * @param config Configuration to apply to GNSS NMEA0183 match instance
  */
+void gnss_nmea0183_match_txt_callback(struct modem_chat *chat, char **argv, uint16_t argc,
+                                      void *user_data);
+
 int gnss_nmea0183_match_init(struct gnss_nmea0183_match_data *data,
 			     const struct gnss_nmea0183_match_config *config);
 
