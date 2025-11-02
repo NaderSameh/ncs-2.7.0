@@ -402,7 +402,7 @@ char *get_mqtt_sub_topic(char *IMEI) {
 // #define PORT 1882
 // #endif
 
-uint8_t host[32] = "192.0.2.1";
+uint8_t host[32] = "10.0.0.2";
 uint16_t port = 1884;
 uint8_t hostUsername[32] = "cytracker_user";
 uint8_t hostPassword[32] = "cytracker_cypod123";

@@ -203,8 +203,8 @@ void ReportMessages(void) {
         LOG_ERR("Failed to start modem, ret = %d", ret);
     }
     LOG_ERR("ENDEDDDDD????!");
-    modem_cellular_clock(modem);
-    modem_cellular_get_lbs_location(modem);
+    // modem_cellular_clock(modem);
+    // modem_cellular_get_lbs_location(modem);
     ret = ConnectBroker();
     if (ret != 0) {
       LOG_ERR("Failed to connect to broker, ret = %d", ret);
@@ -252,6 +252,36 @@ int main(void)
                     LOG_INF("IPv4 address: %s", ip_str);
                 }
             }
+
+            /*
+             * Small UDP probe: send one datagram to the host-side TUN address
+             * (10.0.0.2) on a high port to force the network stack to emit an
+             * IPv4 packet over PPP. This helps the host-side forwarder detect
+             * and route the packet into the host TUN.
+             *
+             * Wrapped in a define so it can be disabled easily.
+             */
+// #ifdef FORCE_IPV4_PROBE
+            {
+                int s = -1;
+                struct sockaddr_in dst;
+                const char *msg = "ppp_probe";
+
+                s = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+                if (s >= 0) {
+                    memset(&dst, 0, sizeof(dst));
+                    dst.sin_family = AF_INET;
+                    dst.sin_port = htons(40000);
+                    net_addr_pton(AF_INET, "10.0.0.2", &dst.sin_addr);
+                    (void)sendto(s, msg, strlen(msg), 0,
+                                 (struct sockaddr *)&dst, sizeof(dst));
+                    close(s);
+                    LOG_INF("Sent UDP probe to 10.0.0.2:40000");
+                } else {
+                    LOG_ERR("Failed to create UDP socket for probe: %d", s);
+                }
+            }
+// #endif
         }
     } else {
         LOG_ERR("*** TIMEOUT: L4_CONNECTED event not received within 120s ***");
