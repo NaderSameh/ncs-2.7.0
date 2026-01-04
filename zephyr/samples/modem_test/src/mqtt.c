@@ -3,6 +3,14 @@
 #include <zephyr/pm/device.h>
 #include <zephyr/pm/device_runtime.h>
 
+/* Mock configuration for testing without network */
+#ifdef CONFIG_MQTT_MOCK_MODE
+#define MAX_MOCK_PAYLOADS 10
+static char mock_payloads[MAX_MOCK_PAYLOADS][256];
+static int mock_payload_count = 0;
+static bool mock_connected = false;
+#endif
+
 // extern Assigned_Tags my_Tags;
 // extern uint8_t ble_interval;
 // extern const struct device *gpio_device;
@@ -402,7 +410,7 @@ char *get_mqtt_sub_topic(char *IMEI) {
 // #define PORT 1882
 // #endif
 
-uint8_t host[32] = "10.0.0.2";
+uint8_t host[32] = "192.0.2.1";
 uint16_t port = 1884;
 uint8_t hostUsername[32] = "cytracker_user";
 uint8_t hostPassword[32] = "cytracker_cypod123";
@@ -548,6 +556,16 @@ int try_to_connect(struct mqtt_client *client) {
 }
 
 int process_mqtt_and_sleep(int timeout) {
+#ifdef CONFIG_MQTT_MOCK_MODE
+  if (!mock_connected) {
+    printk("[MOCK] process_mqtt_and_sleep: Not connected\n");
+    return -ENOTCONN;
+  }
+  
+  printk("[MOCK] process_mqtt_and_sleep: Simulating %d ms sleep\n", timeout);
+  k_sleep(K_MSEC(timeout));
+  return 0;  /* Success */
+#else
   int64_t remaining = timeout;
   int64_t start_time = k_uptime_get();
   int rc;
@@ -575,22 +593,57 @@ int process_mqtt_and_sleep(int timeout) {
     remaining = timeout + start_time - k_uptime_get();
   }
   return 0;
+#endif
 }
 
 int ConnectBroker(void) {
+#ifdef CONFIG_MQTT_MOCK_MODE
+  printk("[MOCK] ConnectBroker: Simulating successful connection\n");
+  mock_connected = true;
+  return 0;  /* Success */
+#else
   printk("attempting to connect: ");
   int rc = try_to_connect(&client_ctx);
   PRINT_RESULT("try_to_connect", rc);
   return rc;
+#endif
 }
 
 int DisconnectBroker(void) {
+#ifdef CONFIG_MQTT_MOCK_MODE
+  if (!mock_connected) {
+    printk("[MOCK] DisconnectBroker: Already disconnected\n");
+    return 0;
+  }
+  printk("[MOCK] DisconnectBroker: Simulating successful disconnection\n");
+  mock_connected = false;
+  return 0;  /* Success */
+#else
   int rc = mqtt_disconnect(&client_ctx);
   PRINT_RESULT("mqtt_disconnect", rc);
   SUCCESS_OR_EXIT(rc);
+#endif
 }
 
 int publish_message(char *topic, char *payload) {
+#ifdef CONFIG_MQTT_MOCK_MODE
+  if (!mock_connected) {
+    printk("[MOCK] publish_message: Not connected\n");
+    return -1;
+  }
+  
+  if (mock_payload_count < MAX_MOCK_PAYLOADS) {
+    snprintf(mock_payloads[mock_payload_count], sizeof(mock_payloads[0]), 
+             "%s", payload);
+    printk("[MOCK] publish_message [%d]: topic='%s', payload='%s'\n", 
+           mock_payload_count, topic, payload);
+    mock_payload_count++;
+    return 0;  /* Success */
+  } else {
+    printk("[MOCK] publish_message: Buffer full\n");
+    return -1;
+  }
+#else
   struct mqtt_publish_param param;
 
   param.message.topic.qos = MQTT_QOS_1_AT_LEAST_ONCE;
@@ -603,6 +656,7 @@ int publish_message(char *topic, char *payload) {
   param.retain_flag = 0;
 
   return mqtt_publish(&client_ctx, &param);
+#endif
 }
 
 int subscribe_topic(char *topic) {
@@ -620,7 +674,25 @@ int subscribe_topic(char *topic) {
 
   return mqtt_subscribe(&client_ctx, &sub_list);
 }
+#ifdef CONFIG_MQTT_MOCK_MODE
+/* Functions to access mock data for testing */
+int get_mock_payload_count(void) {
+  return mock_payload_count;
+}
 
+const char* get_mock_payload(int index) {
+  if (index >= 0 && index < mock_payload_count) {
+    return mock_payloads[index];
+  }
+  return NULL;
+}
+
+void reset_mock_payloads(void) {
+  mock_payload_count = 0;
+  mock_connected = false;
+  printk("[MOCK] Reset: payload count and connection state cleared\n");
+}
+#endif
 int unsubscribe_topic(char *topic) {
   struct mqtt_topic subscribe_topics[] = {{.topic =
                                                {

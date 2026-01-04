@@ -1,4 +1,4 @@
-# Install script for directory: D:/ncs-D/v2.7.0-rc3/zephyr
+# Install script for directory: C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,241 +34,241 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Users/Nader/zephyr-sdk-0.16.8/arm-zephyr-eabi/bin/arm-zephyr-eabi-objdump.exe")
+  set(CMAKE_OBJDUMP "C:/ncs/toolchains/ce3b5ff664/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/zephyr/arch/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/zephyr/arch/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/zephyr/lib/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/zephyr/lib/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/zephyr/soc/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/zephyr/soc/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/zephyr/boards/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/zephyr/boards/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/zephyr/subsys/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/zephyr/subsys/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/zephyr/drivers/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/zephyr/drivers/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/nrf/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/nrf/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/mcuboot/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/mcuboot/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/mbedtls/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/mbedtls/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/trusted-firmware-m/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/trusted-firmware-m/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/cjson/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/cjson/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/azure-sdk-for-c/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/azure-sdk-for-c/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/cirrus-logic/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/cirrus-logic/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/openthread/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/openthread/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/suit-processor/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/suit-processor/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/memfault-firmware-sdk/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/memfault-firmware-sdk/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/canopennode/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/canopennode/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/chre/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/chre/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/lz4/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/lz4/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/nanopb/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/nanopb/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/zscilib/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/zscilib/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/cmsis/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/cmsis/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/cmsis-dsp/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/cmsis-dsp/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/cmsis-nn/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/cmsis-nn/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/fatfs/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/fatfs/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/hal_nordic/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/hal_nordic/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/hal_st/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/hal_st/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/hal_wurthelektronik/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/hal_wurthelektronik/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/libmetal/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/libmetal/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/liblc3/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/liblc3/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/littlefs/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/littlefs/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/loramac-node/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/loramac-node/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/lvgl/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/lvgl/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/mipi-sys-t/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/mipi-sys-t/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/nrf_hw_models/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/nrf_hw_models/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/open-amp/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/open-amp/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/picolibc/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/picolibc/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/segger/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/segger/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/tinycrypt/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/tinycrypt/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/uoscore-uedhoc/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/uoscore-uedhoc/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/zcbor/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/zcbor/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/nrfxlib/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/nrfxlib/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/modules/connectedhomeip/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/modules/connectedhomeip/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/zephyr/kernel/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/zephyr/kernel/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/zephyr/cmake/flash/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/zephyr/cmake/flash/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/zephyr/cmake/usage/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/zephyr/cmake/usage/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/ncs-D/v2.7.0-rc3/zephyr/samples/modem_test/build/zephyr/cmake/reports/cmake_install.cmake")
+  include("C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/zephyr/samples/modem_test/build/zephyr/cmake/reports/cmake_install.cmake")
 endif()
 

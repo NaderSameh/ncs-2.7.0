@@ -1,2 +1,2 @@
-"nrf":"D:/ncs-D/v2.7.0-rc3/nrf":"D:/ncs-D/v2.7.0-rc3/nrf/sysbuild"
-"mcuboot":"D:/ncs-D/v2.7.0-rc3/bootloader/mcuboot":"D:/ncs-D/v2.7.0-rc3/bootloader/mcuboot/boot/zephyr/sysbuild"
+"nrf":"C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/nrf":"C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/nrf/sysbuild"
+"mcuboot":"C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/bootloader/mcuboot":"C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/bootloader/mcuboot/boot/zephyr/sysbuild"

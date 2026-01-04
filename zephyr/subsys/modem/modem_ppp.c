@@ -240,7 +240,7 @@ static void modem_ppp_process_received_byte(struct modem_ppp *ppp, uint8_t byte)
 				break;
 			}
 
-			LOG_DBG("Receiving PPP frame");
+			// LOG_DBG("Receiving PPP frame");
 			ppp->receive_state = MODEM_PPP_RECEIVE_STATE_WRITING;
 			net_pkt_cursor_init(ppp->rx_pkt);
 		} else {
@@ -422,7 +422,7 @@ static void modem_ppp_process_handler(struct k_work *item)
 
 	for (int i = 0; i < ret; i++) {
 		modem_ppp_process_received_byte(ppp, ppp->receive_buf[i]);
-		LOG_INF("Received byte: 0x%02x", ppp->receive_buf[i]);
+		// LOG_INF("Received byte: 0x%02x", ppp->receive_buf[i]);
 	}
 
 	k_work_submit(&ppp->process_work);

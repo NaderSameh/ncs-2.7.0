@@ -9,7 +9,6 @@
 #include <zephyr/drivers/cellular.h>
 #include <zephyr/drivers/flash.h>
 #include <zephyr/drivers/gpio.h>
-#include <zephyr/drivers/rtc.h>
 #include <zephyr/kernel.h>
 #include <zephyr/modem/backend/uart.h>
 #include <zephyr/modem/chat.h>
@@ -21,6 +20,7 @@
 #include <zephyr/pm/device.h>
 #include <zephyr/sys/atomic.h>
 
+#include <zephyr/drivers/rtc.h>
 #include <zephyr/sys/timeutil.h>
 
 #include <zephyr/logging/log.h>
@@ -30,11 +30,16 @@ LOG_MODULE_REGISTER(modem_cellular, CONFIG_MODEM_LOG_LEVEL);
 #include <string.h>
 #include <time.h>
 
-// #include "D:\Cypod\cylockv2i7.2\src\FIFO.h"
-// #include "D:\ncs-D\cylockv2i7.2\src\FIFO.h"
-// #include "D:\ncs-D\v2.7.0-rc3\zephyr\samples\modem_test\src\FIFO.h"
+//#ifdef CYSEAL
+#include "D:\ncs-D\cylockv2i7.2\src\FIFO.h"
+//#endif
 
-#define MODEM_CELLULAR_PERIODIC_SCRIPT_TIMEOUT K_MSEC(20000)
+//#ifdef CYTRACK
+//#include "D:\ncs\cylockv2i7.2\src\FIFO.h"
+//#include "D:\ncs\cylockv2i7.2\src\FIFO.h"
+//#endif
+
+#define MODEM_CELLULAR_PERIODIC_SCRIPT_TIMEOUT K_MSEC(8000)
 
 #define MODEM_CELLULAR_DATA_IMEI_LEN (16)
 #define MODEM_CELLULAR_DATA_MODEL_ID_LEN (65)
@@ -55,14 +60,12 @@ LOG_MODULE_REGISTER(modem_cellular, CONFIG_MODEM_LOG_LEVEL);
 
 extern const struct device *gpio1;
 extern const struct device *gpio_device;
-#ifdef CONFIG_MODEM_CELLULAR_TAGS
+
+extern bool second_failed_attempt;
 extern Assigned_Tags my_Tags;
-#endif
 
 extern unsigned long clockUnix;
-#ifdef CONFIG_MODEM_RTC
 extern struct device *rtc;
-#endif
 static void get_file_handler(struct modem_chat *chat, char **argv,
                              uint16_t argc, void *user_data);
 static void get_file_handler_ota(struct modem_chat *chat, char **argv,
@@ -469,7 +472,6 @@ static void get_subs_data(struct modem_chat *chat, char **argv, uint16_t argc,
     if (ret & (1 << 10)) {
       // Activation_Request = temp_results.activate_sending;
     }
-#ifdef CONFIG_MODEM_CELLULAR_TAGS
     if (ret & (1 << 11)) {
       my_Tags.Assigned_Tags_Count = 1;
       if (strcmp(my_Tags.Tags_Info.Ble_CyTag_Ids[0], temp_results.id0) != 0) {
@@ -556,7 +558,6 @@ static void get_subs_data(struct modem_chat *chat, char **argv, uint16_t argc,
       memset(my_Tags.Tags_Info.Ble_CyTag_Ids[9], 0,
              sizeof(my_Tags.Tags_Info.Ble_CyTag_Ids[9]));
     }
-#endif
     // flashSaveAssignedTags();
   }
   return;
@@ -624,12 +625,11 @@ static void get_file_data(struct modem_chat *chat, char **argv, uint16_t argc,
     printk(" %d %% done\r\n", (filepointer * 100 / fileSize));
     printk("file done writing\r\n");
     k_msleep(2000);
-#ifdef CONFIG_MCUBOOT
+
     int rc = boot_request_upgrade(1);
     gpio_pin_set(gpio1, 0, 1);
     k_msleep(1000);
     printk("rc = %d \r\n", rc);
-#endif
     NVIC_SystemReset();
 
     return;
@@ -657,6 +657,8 @@ static void flash_erase_handler() {
   }
 }
 
+extern char IMEI[20];
+
 static void modem_cellular_chat_on_imei(struct modem_chat *chat, char **argv,
                                         uint16_t argc, void *user_data) {
   struct modem_cellular_data *data = (struct modem_cellular_data *)user_data;
@@ -666,6 +668,7 @@ static void modem_cellular_chat_on_imei(struct modem_chat *chat, char **argv,
   }
 
   strncpy(data->imei, argv[1], sizeof(data->imei) - 1);
+  strncpy(IMEI, argv[1], sizeof(data->imei) - 1);
 }
 
 extern void push_celltower_msg(char *msg);
@@ -701,6 +704,7 @@ static void modem_cellular_chat_on_cgmr(struct modem_chat *chat, char **argv,
   }
 
   strncpy(data->fw_version, argv[1], sizeof(data->fw_version) - 1);
+  //  LOG_INF("Firmware version: %s", msg->data);
 }
 
 static void modem_cellular_chat_on_csq(struct modem_chat *chat, char **argv,
@@ -768,18 +772,14 @@ unsigned long unixtime(struct tm crtime) {
 unsigned long convert_to_unix_time(char *date_str) {
   struct rtc_time tm;
   int offset_quarters;
-  LOG_ERR("Date string from modem: %s", date_str);
+
   // Parse the date and time components
   sscanf(date_str, "\"%2d/%2d/%2d,%2d:%2d:%2d+%2d\"", &tm.tm_year, &tm.tm_mon,
          &tm.tm_mday, &tm.tm_hour, &tm.tm_min, &tm.tm_sec, &offset_quarters);
   tm.tm_mon -= 1;
   tm.tm_year += 100;
-  LOG_ERR("Parsed date: %04d-%02d-%02d %02d:%02d:%02d, Offset: %d quarters",
-          tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min,
-          tm.tm_sec, offset_quarters);
-#ifdef CONFIG_MODEM_RTC
+
   rtc_set_time(rtc, &tm);
-#endif
   struct tm *tm2 = rtc_time_to_tm(&tm);
   // Adjust year and month to match struct tm format
   // tm2->tm_year += 2000; // tm_year is years since 1900
@@ -823,6 +823,7 @@ static void modem_cellular_chat_on_imsi(struct modem_chat *chat, char **argv,
 }
 
 static bool modem_cellular_is_registered(struct modem_cellular_data *data) {
+
   return (data->registration_status_gsm ==
           CELLULAR_REGISTRATION_REGISTERED_HOME) ||
          (data->registration_status_gsm ==
@@ -869,6 +870,9 @@ static void modem_cellular_chat_on_psim_no_sim(struct modem_chat *chat,
                                                void *user_data);
 
 MODEM_CHAT_MATCH_DEFINE(ok_match, "OK", "", NULL);
+/*********************************************************************************/
+MODEM_CHAT_MATCH_DEFINE(ping_match, "+QPING:", "", NULL);
+/*********************************************************************************/
 MODEM_CHAT_MATCHES_DEFINE(allow_match, MODEM_CHAT_MATCH("OK", "", NULL),
                           MODEM_CHAT_MATCH("ERROR", "", NULL));
 
@@ -885,7 +889,8 @@ MODEM_CHAT_MATCH_DEFINE(file_match, "+QFOPEN: ", "", get_file_handler);
 MODEM_CHAT_MATCH_DEFINE(file_match_ota, "+QFOPEN: ", "", get_file_handler_ota);
 MODEM_CHAT_MATCH_DEFINE(Erase_flash_match, "OK", "", flash_erase_handler);
 MODEM_CHAT_MATCH_DEFINE(GettingBytes_match, "CONNECT ", "", NULL);
-
+////eg915 fw versiom
+MODEM_CHAT_MATCH_DEFINE(cgmr_match, "", "", modem_cellular_chat_on_cgmr);
 MODEM_CHAT_MATCH_DEFINE(imei_match, "", "", modem_cellular_chat_on_imei);
 MODEM_CHAT_MATCH_DEFINE(cgmm_match, "", "", modem_cellular_chat_on_cgmm);
 MODEM_CHAT_MATCH_DEFINE(csq_match, "+CSQ: ", ",", modem_cellular_chat_on_csq);
@@ -905,9 +910,9 @@ MODEM_CHAT_MATCH_DEFINE(cimi_match __maybe_unused, "", "",
                         modem_cellular_chat_on_imsi);
 MODEM_CHAT_MATCH_DEFINE(cgmi_match __maybe_unused, "", "",
                         modem_cellular_chat_on_cgmi);
-MODEM_CHAT_MATCH_DEFINE(cgmr_match __maybe_unused, "", "",
-                        modem_cellular_chat_on_cgmr);
-
+// MODEM_CHAT_MATCH_DEFINE(cgmr_match __maybe_unused, "", "",
+//   modem_cellular_chat_on_cgmr);
+//
 MODEM_CHAT_MATCHES_DEFINE(
     unsol_matches,
     MODEM_CHAT_MATCH("+CREG: ", ",", modem_cellular_chat_on_cxreg),
@@ -1157,6 +1162,32 @@ static int modem_cellular_on_run_init_script_state_enter(
 // uint8_t scanMode[25] = "AT+QCFG=\"nwscanmode\",3,1";
 uint8_t simMode[11] = "AT+QDSIM=0";
 
+/******************************************************************/
+static void modem_cellular_chat_inet_cb(struct modem_chat_script *script,
+                                        int status, void *user_data) {
+  if (status == 0) {
+    printk("Internet check successful\n");
+  } else {
+    printk("Internet check failed, status=%d\n", status);
+  }
+}
+
+/* Step 1: activate PDP context ID=3
+ * Step 2: check PDP status
+ * Step 3: do a ping test to 8.8.8.8
+ */
+MODEM_CHAT_SCRIPT_CMDS_DEFINE(
+    inet_check_cmds, MODEM_CHAT_SCRIPT_CMD_RESP("AT+QIACT=2", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+QIACT?", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+QPING=2,\"8.8.8.8\"", ping_match));
+
+/* Script definition */
+MODEM_CHAT_SCRIPT_DEFINE(inet_check_script, inet_check_cmds, /* command list */
+                         abort_matches,               /* abort on "ERROR" */
+                         modem_cellular_chat_inet_cb, /* callback */
+                         60                           /* timeout seconds */
+);
+
 extern bool initial;
 struct modem_chat_script_chat init_script_duo_sim_cmds[] = {
     MODEM_CHAT_SCRIPT_CMD_RESP("ATE0", ok_match),
@@ -1164,10 +1195,10 @@ struct modem_chat_script_chat init_script_duo_sim_cmds[] = {
     MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+QCFG=\"nwscanmode\",0,1", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP(simMode, ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGMR", cgmr_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP_MULT("AT+QCCID", qccid_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
 
-    MODEM_CHAT_SCRIPT_CMD_RESP("AT+QCCID", qccid_match),
-    // MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
-    // MODEM_CHAT_SCRIPT_CMD_RESP_NONE("", 300),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CFUN=4", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CREG=1", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGREG=1", ok_match),
@@ -1182,6 +1213,43 @@ MODEM_CHAT_SCRIPT_DEFINE(init_script_duo_sim_script, init_script_duo_sim_cmds,
                          abort_matches, modem_cellular_chat_callback_handler,
                          20);
 
+//#if defined(CONFIG_CYTRACK)
+struct modem_chat_script_chat init_script_no_esim_cmds[] = {
+    MODEM_CHAT_SCRIPT_CMD_RESP("ATE0", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+QCFG=\"nwscanmode\",0,1", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP(simMode, ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+CFUN=4", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGSN", imei_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGMR", cgmr_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+CREG=1", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGREG=1", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+CEREG=1", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+CREG?", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+CEREG?", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGREG?", ok_match),
+
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+QCCID", qccid_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
+
+    MODEM_CHAT_SCRIPT_CMD_RESP_NONE("AT+CMUX=0,0,5,127,10,3,30,10,2", 120)};
+
+MODEM_CHAT_SCRIPT_DEFINE(init_script_one_sim_script, init_script_no_esim_cmds,
+                         abort_matches, modem_cellular_chat_callback_handler,
+                         20);
+
+                         struct modem_chat_script_chat pwr_dwn_chat_script_cmds[] = {
+MODEM_CHAT_SCRIPT_CMD_RESP("AT+QPOWD", ok_match)};
+
+int modem_cellular_chat_pwr_dwn_callback_handler(
+    struct modem_chat *chat, enum modem_chat_script_result result,
+    void *user_data);
+
+MODEM_CHAT_SCRIPT_DEFINE(pwr_dwn_chat_script, pwr_dwn_chat_script_cmds,
+                         abort_matches,
+                         modem_cellular_chat_pwr_dwn_callback_handler, 10);
+//#endif
+
 static void
 modem_cellular_run_init_script_event_handler(struct modem_cellular_data *data,
                                              enum modem_cellular_event evt) {
@@ -1192,11 +1260,26 @@ modem_cellular_run_init_script_event_handler(struct modem_cellular_data *data,
   case MODEM_CELLULAR_EVENT_BUS_OPENED:
     modem_chat_attach(&data->chat, data->uart_pipe);
 
-    // if (initial) {
-    // modem_chat_run_script_async(&data->chat, config->init_chat_script);
-    // } else {
+#if defined(CONFIG_CYTRACK)
+#if defined(CONFIG_DUAL_SIM)
+    if (initial) {
+      modem_chat_run_script_async(&data->chat, config->init_chat_script);
+    } else {
+      modem_chat_run_script_async(&data->chat, &init_script_duo_sim_script);
+    }
+#else
+    modem_chat_run_script_async(&data->chat, &init_script_one_sim_script);
+#endif
+#endif
+
+#if defined(CONFIG_CYSEAL)
+#if defined(CONFIG_DUAL_SIM)
     modem_chat_run_script_async(&data->chat, &init_script_duo_sim_script);
-    // }
+#else
+    modem_chat_run_script_async(&data->chat, &init_script_one_sim_script);
+#endif
+#endif
+
     break;
 
   case MODEM_CELLULAR_EVENT_SCRIPT_SUCCESS:
@@ -1217,12 +1300,21 @@ modem_cellular_run_init_script_event_handler(struct modem_cellular_data *data,
     break;
 
   case MODEM_CELLULAR_EVENT_SCRIPT_FAILED:
-    if (modem_cellular_gpio_is_enabled(&config->power_gpio)) {
+  // LOG_INF("HERE FEL FAILED??!!");
+  //   if (second_failed_attempt) {
+  //     LOG_INF("POWER DOWN ON SECOND ATTEMPT");
+  //     int ret = modem_chat_run_script(&data->chat, &pwr_dwn_chat_script);
+  //     if (ret == 0) {
+  //       printk("power down on second attempt!!!!\n\n\n\n");
+  //     }
+  //     break;
+  //   }
+     if (modem_cellular_gpio_is_enabled(&config->power_gpio)) {
       modem_cellular_enter_state(data, MODEM_CELLULAR_STATE_POWER_ON_PULSE);
       break;
     }
 
-    if (modem_cellular_gpio_is_enabled(&config->reset_gpio)) {
+     if (modem_cellular_gpio_is_enabled(&config->reset_gpio)) {
       modem_cellular_enter_state(data, MODEM_CELLULAR_STATE_RESET_PULSE);
       break;
     }
@@ -1396,6 +1488,8 @@ modem_cellular_await_registered_event_handler(struct modem_cellular_data *data,
     break;
 
   case MODEM_CELLULAR_EVENT_REGISTERED:
+    /***************************************************************** */
+    modem_chat_run_script_async(&data->chat, &inet_check_script);
     modem_cellular_enter_state(data, MODEM_CELLULAR_STATE_CARRIER_ON);
     break;
 
@@ -2052,8 +2146,8 @@ static void get_file_handler_ota(struct modem_chat *chat, char **argv,
 /*************GPS configuration****************/
 /**********************************************/
 // MODEM_CHAT_MATCHES_DEFINE(conf_gps_match,
-// 				MODEM_CHAT_MATCH("OK", "", NULL),
-// 				MODEM_CHAT_MATCH("+CME ERROR: ", "", NULL));
+//        MODEM_CHAT_MATCH("OK", "", NULL),
+//        MODEM_CHAT_MATCH("+CME ERROR: ", "", NULL));
 MODEM_CHAT_MATCHES_DEFINE(conf_gps_match, MODEM_CHAT_MATCH("OK", "", NULL),
                           MODEM_CHAT_MATCH("+CME ERROR: ", "", NULL));
 
@@ -2317,11 +2411,11 @@ static void modem_cellular_chat_lbs(struct modem_chat *chat, char **argv,
   if (argc == 4) {
     // printk("Lat LBS: %s\n", argv[2]);
     // printk("Long LBS: %s\n", argv[3]);
-    // clockUnix = get_unix_ts();
+    clockUnix = get_unix_ts();
     sprintf(buffer, "{\"T\":%ld,\"lat_lbs\":%s,\"lng_lbs\":%s}", clockUnix,
             argv[2], argv[3]);
     printk("%s\r\n", buffer);
-    // push_lbs_msg(buffer);
+    push_lbs_msg(buffer);
   }
 }
 
@@ -2400,6 +2494,20 @@ int modem_cellular_chat_clock_callback_handler(
   }
 }
 
+int modem_cellular_chat_pwr_dwn_callback_handler(
+    struct modem_chat *chat, enum modem_chat_script_result result,
+    void *user_data) {
+  struct modem_cellular_data *data = (struct modem_cellular_data *)user_data;
+  printk("power down Callback Handler\n\r");
+
+  if (result == MODEM_CHAT_SCRIPT_RESULT_SUCCESS) {
+    printk("power down SCRIPT SUCCESS\n");
+  }
+  if (result == MODEM_CHAT_SCRIPT_RESULT_TIMEOUT) {
+    printk("power down Timout SCRIPT");
+  }
+}
+
 struct modem_chat_script_chat clock_chat_script_cmds[] = {
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CCLK?", clock_match)};
 
@@ -2414,12 +2522,30 @@ int modem_cellular_clock(const struct device *dev) {
 
   // if ((data->state != MODEM_CELLULAR_STATE_AWAIT_REGISTERED) &&
   //     (data->state != MODEM_CELLULAR_STATE_CARRIER_ON)) {
-  // 	return -ENODATA;
+  //  return -ENODATA;
   // }
   ret = modem_chat_run_script(&data->chat, &clock_chat_script);
 
   // /* Verify chat script ran successfully */
   if (ret == 0) {
+    return ret;
+  } else {
+    return -ENOTSUP;
+  }
+}
+
+
+
+int modem_cellular_pwr_dwn(const struct device *dev) {
+  printk("Running pwrdwn Script\n");
+  int ret = -ENOTSUP;
+  struct modem_cellular_data *data = (struct modem_cellular_data *)dev->data;
+  ret = modem_chat_run_script(&data->chat, &pwr_dwn_chat_script);
+
+  // /* Verify chat script ran successfully */
+  if (ret == 0) {
+    printk("HEREEEEEEE IDLE STATE MODEM!!!!\n\n\n\n");
+    modem_cellular_enter_state(data, MODEM_CELLULAR_STATE_IDLE);
     return ret;
   } else {
     return -ENOTSUP;
@@ -2664,7 +2790,7 @@ static void modem_cellular_chat_qeng(struct modem_chat *chat, char **argv,
   printk("rssi : %s\n", argv[11]);
 
   buffer[0] = '\0';
-  // clockUnix = get_unix_ts();
+  clockUnix = get_unix_ts();
   sprintf(buffer,
           "[{T:%d,"
           "\"RT\":%s,"
@@ -2985,17 +3111,20 @@ MODEM_CHAT_SCRIPT_DEFINE(quectel_bg95_periodic_chat_script,
 MODEM_CHAT_SCRIPT_CMDS_DEFINE(
     quectel_eg25_g_init_chat_script_cmds,
     MODEM_CHAT_SCRIPT_CMD_RESP("ATE0", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGMR", cgmr_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGSN", imei_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+QDSIM=1", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+QCCID", esim_qccid_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+QDSIM=0", ok_match),
-    MODEM_CHAT_SCRIPT_CMD_RESP_MULT("AT+QCCID", psim_qccid_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+QCCID", psim_qccid_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
-    MODEM_CHAT_SCRIPT_CMD_RESP_NONE("", 30),
+    MODEM_CHAT_SCRIPT_CMD_RESP_NONE("", 1000),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+QCFG=\"nwscanmode\",0,1", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CFUN=4", ok_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGSN", imei_match),
+    MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CREG=1", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGREG=1", ok_match),
     MODEM_CHAT_SCRIPT_CMD_RESP("AT+CEREG=1", ok_match),

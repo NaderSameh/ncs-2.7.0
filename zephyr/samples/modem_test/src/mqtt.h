@@ -9,7 +9,7 @@
 #include <string.h>
 #include <zephyr/data/json.h>
 
-#include "FIFO-test.h" //For Cytags
+#include "FIFO.h" //For Cytags
 // #include "PIN_CTRL.h"
 
 
@@ -54,5 +54,12 @@ int subscribe_topic(char *topic);
 int process_mqtt_and_sleep(int timeout);
 
 int get_mqtt_pub_topic(char *IMEI, char *topic);
+
+#ifdef CONFIG_MQTT_MOCK_MODE
+/* Functions to access mock data for testing */
+int get_mock_payload_count(void);
+const char* get_mock_payload(int index);
+void reset_mock_payloads(void);
+#endif
 
 // #endif

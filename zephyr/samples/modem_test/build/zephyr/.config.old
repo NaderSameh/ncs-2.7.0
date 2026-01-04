@@ -102,7 +102,7 @@ CONFIG_DT_HAS_VND_GPIO_ENABLED=y
 #
 
 #
-# nrf (D:/ncs-D/v2.7.0-rc3/nrf)
+# nrf (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/nrf)
 #
 # CONFIG_MBOX is not set
 CONFIG_NUM_METAIRQ_PRIORITIES=0
@@ -638,10 +638,10 @@ CONFIG_ZTEST_MULTICORE_DEFAULT_SETTINGS=y
 # end of Nordic nRF Connect
 
 CONFIG_ZEPHYR_NRF_MODULE=y
-# end of nrf (D:/ncs-D/v2.7.0-rc3/nrf)
+# end of nrf (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/nrf)
 
 #
-# mcuboot (D:/ncs-D/v2.7.0-rc3/bootloader/mcuboot)
+# mcuboot (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/bootloader/mcuboot)
 #
 
 #
@@ -652,10 +652,10 @@ CONFIG_DT_FLASH_WRITE_BLOCK_SIZE=0
 # end of MCUboot
 
 CONFIG_ZEPHYR_MCUBOOT_MODULE=y
-# end of mcuboot (D:/ncs-D/v2.7.0-rc3/bootloader/mcuboot)
+# end of mcuboot (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/bootloader/mcuboot)
 
 #
-# mbedtls (D:/ncs-D/v2.7.0-rc3/modules/crypto/mbedtls)
+# mbedtls (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/crypto/mbedtls)
 #
 CONFIG_ZEPHYR_MBEDTLS_MODULE=y
 
@@ -708,54 +708,54 @@ CONFIG_ZEPHYR_MBEDTLS_MODULE=y
 #
 # end of Elliptic Curve type support
 # end of PSA Asymmetric support
-# end of mbedtls (D:/ncs-D/v2.7.0-rc3/modules/crypto/mbedtls)
+# end of mbedtls (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/crypto/mbedtls)
 
 #
-# oberon-psa-crypto (D:/ncs-D/v2.7.0-rc3/modules/crypto/oberon-psa-crypto)
+# oberon-psa-crypto (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/crypto/oberon-psa-crypto)
 #
 CONFIG_ZEPHYR_OBERON_PSA_CRYPTO_MODULE=y
-# end of oberon-psa-crypto (D:/ncs-D/v2.7.0-rc3/modules/crypto/oberon-psa-crypto)
+# end of oberon-psa-crypto (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/crypto/oberon-psa-crypto)
 
 #
-# trusted-firmware-m (D:/ncs-D/v2.7.0-rc3/modules/tee/tf-m/trusted-firmware-m)
+# trusted-firmware-m (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/tee/tf-m/trusted-firmware-m)
 #
 # CONFIG_BOOTLOADER_MCUBOOT is not set
 CONFIG_ZEPHYR_TRUSTED_FIRMWARE_M_MODULE=y
-# end of trusted-firmware-m (D:/ncs-D/v2.7.0-rc3/modules/tee/tf-m/trusted-firmware-m)
+# end of trusted-firmware-m (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/tee/tf-m/trusted-firmware-m)
 
 CONFIG_ZEPHYR_PSA_ARCH_TESTS_MODULE=y
 CONFIG_ZEPHYR_SOC_HWMV1_MODULE=y
 
 #
-# cjson (D:/ncs-D/v2.7.0-rc3/modules/lib/cjson)
+# cjson (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/cjson)
 #
 # CONFIG_CJSON_LIB is not set
 CONFIG_ZEPHYR_CJSON_MODULE=y
-# end of cjson (D:/ncs-D/v2.7.0-rc3/modules/lib/cjson)
+# end of cjson (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/cjson)
 
 #
-# azure-sdk-for-c (D:/ncs-D/v2.7.0-rc3/modules/lib/azure-sdk-for-c)
+# azure-sdk-for-c (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/azure-sdk-for-c)
 #
 # CONFIG_AZURE_SDK is not set
 CONFIG_ZEPHYR_AZURE_SDK_FOR_C_MODULE=y
-# end of azure-sdk-for-c (D:/ncs-D/v2.7.0-rc3/modules/lib/azure-sdk-for-c)
+# end of azure-sdk-for-c (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/azure-sdk-for-c)
 
 #
-# cirrus-logic (D:/ncs-D/v2.7.0-rc3/modules/hal/cirrus-logic)
+# cirrus-logic (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/hal/cirrus-logic)
 #
 # CONFIG_HW_CODEC_CIRRUS_LOGIC is not set
 CONFIG_ZEPHYR_CIRRUS_LOGIC_MODULE=y
-# end of cirrus-logic (D:/ncs-D/v2.7.0-rc3/modules/hal/cirrus-logic)
+# end of cirrus-logic (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/hal/cirrus-logic)
 
 #
-# openthread (D:/ncs-D/v2.7.0-rc3/modules/lib/openthread)
+# openthread (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/openthread)
 #
 # CONFIG_OPENTHREAD is not set
 CONFIG_ZEPHYR_OPENTHREAD_MODULE=y
-# end of openthread (D:/ncs-D/v2.7.0-rc3/modules/lib/openthread)
+# end of openthread (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/openthread)
 
 #
-# suit-generator (D:/ncs-D/v2.7.0-rc3/modules/lib/suit-generator)
+# suit-generator (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/suit-generator)
 #
 CONFIG_SUIT_ENVELOPE_TEMPLATE=""
 CONFIG_SUIT_ENVELOPE_TARGET=""
@@ -763,170 +763,170 @@ CONFIG_SUIT_ENVELOPE_OUTPUT_ARTIFACT="merged.hex"
 CONFIG_SUIT_ENVELOPE_OUTPUT_MPI_MERGE=y
 # CONFIG_SUIT_LOCAL_ENVELOPE_GENERATE is not set
 CONFIG_ZEPHYR_SUIT_GENERATOR_MODULE=y
-# end of suit-generator (D:/ncs-D/v2.7.0-rc3/modules/lib/suit-generator)
+# end of suit-generator (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/suit-generator)
 
 #
-# suit-processor (D:/ncs-D/v2.7.0-rc3/modules/lib/suit-processor)
+# suit-processor (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/suit-processor)
 #
 # CONFIG_SUIT_PROCESSOR is not set
 CONFIG_SUIT_PLATFORM_DRY_RUN_SUPPORT=y
 CONFIG_ZEPHYR_SUIT_PROCESSOR_MODULE=y
-# end of suit-processor (D:/ncs-D/v2.7.0-rc3/modules/lib/suit-processor)
+# end of suit-processor (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/suit-processor)
 
 #
-# memfault-firmware-sdk (D:/ncs-D/v2.7.0-rc3/modules/lib/memfault-firmware-sdk)
+# memfault-firmware-sdk (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/memfault-firmware-sdk)
 #
 # CONFIG_MEMFAULT is not set
 CONFIG_ZEPHYR_MEMFAULT_FIRMWARE_SDK_MODULE=y
-# end of memfault-firmware-sdk (D:/ncs-D/v2.7.0-rc3/modules/lib/memfault-firmware-sdk)
+# end of memfault-firmware-sdk (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/memfault-firmware-sdk)
 
 #
-# coremark (D:/ncs-D/v2.7.0-rc3/modules/benchmark/coremark)
+# coremark (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/benchmark/coremark)
 #
 # CONFIG_COREMARK is not set
 CONFIG_ZEPHYR_COREMARK_MODULE=y
-# end of coremark (D:/ncs-D/v2.7.0-rc3/modules/benchmark/coremark)
+# end of coremark (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/benchmark/coremark)
 
 #
-# canopennode (D:/ncs-D/v2.7.0-rc3/modules/lib/canopennode)
+# canopennode (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/canopennode)
 #
 CONFIG_ZEPHYR_CANOPENNODE_MODULE=y
-# end of canopennode (D:/ncs-D/v2.7.0-rc3/modules/lib/canopennode)
+# end of canopennode (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/canopennode)
 
 #
-# chre (D:/ncs-D/v2.7.0-rc3/modules/lib/chre)
+# chre (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/chre)
 #
 CONFIG_ZEPHYR_CHRE_MODULE=y
 # CONFIG_CHRE is not set
-# end of chre (D:/ncs-D/v2.7.0-rc3/modules/lib/chre)
+# end of chre (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/chre)
 
 #
-# lz4 (D:/ncs-D/v2.7.0-rc3/modules/lib/lz4)
+# lz4 (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/lz4)
 #
 CONFIG_ZEPHYR_LZ4_MODULE=y
 # CONFIG_LZ4 is not set
-# end of lz4 (D:/ncs-D/v2.7.0-rc3/modules/lib/lz4)
+# end of lz4 (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/lz4)
 
 #
-# nanopb (D:/ncs-D/v2.7.0-rc3/modules/lib/nanopb)
+# nanopb (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/nanopb)
 #
 CONFIG_ZEPHYR_NANOPB_MODULE=y
 # CONFIG_NANOPB is not set
-# end of nanopb (D:/ncs-D/v2.7.0-rc3/modules/lib/nanopb)
+# end of nanopb (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/nanopb)
 
 CONFIG_ZEPHYR_TF_M_TESTS_MODULE=y
 
 #
-# zscilib (D:/ncs-D/v2.7.0-rc3/modules/lib/zscilib)
+# zscilib (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/zscilib)
 #
 # CONFIG_ZSL is not set
 CONFIG_ZEPHYR_ZSCILIB_MODULE=y
-# end of zscilib (D:/ncs-D/v2.7.0-rc3/modules/lib/zscilib)
+# end of zscilib (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/zscilib)
 
 #
-# cmsis (D:/ncs-D/v2.7.0-rc3/modules/hal/cmsis)
+# cmsis (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/hal/cmsis)
 #
 CONFIG_ZEPHYR_CMSIS_MODULE=y
 CONFIG_HAS_CMSIS_CORE=y
 CONFIG_HAS_CMSIS_CORE_M=y
 # CONFIG_CMSIS_M_CHECK_DEVICE_DEFINES is not set
-# end of cmsis (D:/ncs-D/v2.7.0-rc3/modules/hal/cmsis)
+# end of cmsis (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/hal/cmsis)
 
 #
-# cmsis-dsp (D:/ncs-D/v2.7.0-rc3/modules/lib/cmsis-dsp)
+# cmsis-dsp (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/cmsis-dsp)
 #
 CONFIG_ZEPHYR_CMSIS_DSP_MODULE=y
 # CONFIG_CMSIS_DSP is not set
-# end of cmsis-dsp (D:/ncs-D/v2.7.0-rc3/modules/lib/cmsis-dsp)
+# end of cmsis-dsp (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/cmsis-dsp)
 
 #
-# cmsis-nn (D:/ncs-D/v2.7.0-rc3/modules/lib/cmsis-nn)
+# cmsis-nn (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/cmsis-nn)
 #
 CONFIG_ZEPHYR_CMSIS_NN_MODULE=y
 # CONFIG_CMSIS_NN is not set
-# end of cmsis-nn (D:/ncs-D/v2.7.0-rc3/modules/lib/cmsis-nn)
+# end of cmsis-nn (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/cmsis-nn)
 
 #
-# fatfs (D:/ncs-D/v2.7.0-rc3/modules/fs/fatfs)
+# fatfs (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/fs/fatfs)
 #
 CONFIG_ZEPHYR_FATFS_MODULE=y
-# end of fatfs (D:/ncs-D/v2.7.0-rc3/modules/fs/fatfs)
+# end of fatfs (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/fs/fatfs)
 
 #
-# hal_nordic (D:/ncs-D/v2.7.0-rc3/modules/hal/nordic)
+# hal_nordic (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/hal/nordic)
 #
 CONFIG_ZEPHYR_HAL_NORDIC_MODULE=y
 # CONFIG_NRF_802154_SOURCE_HAL_NORDIC is not set
-# end of hal_nordic (D:/ncs-D/v2.7.0-rc3/modules/hal/nordic)
+# end of hal_nordic (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/hal/nordic)
 
 #
-# hal_st (D:/ncs-D/v2.7.0-rc3/modules/hal/st)
+# hal_st (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/hal/st)
 #
 CONFIG_ZEPHYR_HAL_ST_MODULE=y
-# end of hal_st (D:/ncs-D/v2.7.0-rc3/modules/hal/st)
+# end of hal_st (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/hal/st)
 
 CONFIG_ZEPHYR_HAL_WURTHELEKTRONIK_MODULE=y
 CONFIG_ZEPHYR_LIBMETAL_MODULE=y
 
 #
-# liblc3 (D:/ncs-D/v2.7.0-rc3/modules/lib/liblc3)
+# liblc3 (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/liblc3)
 #
 CONFIG_ZEPHYR_LIBLC3_MODULE=y
-# end of liblc3 (D:/ncs-D/v2.7.0-rc3/modules/lib/liblc3)
+# end of liblc3 (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/liblc3)
 
 #
-# littlefs (D:/ncs-D/v2.7.0-rc3/modules/fs/littlefs)
+# littlefs (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/fs/littlefs)
 #
 CONFIG_ZEPHYR_LITTLEFS_MODULE=y
-# end of littlefs (D:/ncs-D/v2.7.0-rc3/modules/fs/littlefs)
+# end of littlefs (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/fs/littlefs)
 
 #
-# loramac-node (D:/ncs-D/v2.7.0-rc3/modules/lib/loramac-node)
+# loramac-node (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/loramac-node)
 #
 CONFIG_ZEPHYR_LORAMAC_NODE_MODULE=y
 # CONFIG_HAS_SEMTECH_RADIO_DRIVERS is not set
-# end of loramac-node (D:/ncs-D/v2.7.0-rc3/modules/lib/loramac-node)
+# end of loramac-node (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/loramac-node)
 
 #
-# lvgl (D:/ncs-D/v2.7.0-rc3/modules/lib/gui/lvgl)
+# lvgl (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/gui/lvgl)
 #
 CONFIG_ZEPHYR_LVGL_MODULE=y
-# end of lvgl (D:/ncs-D/v2.7.0-rc3/modules/lib/gui/lvgl)
+# end of lvgl (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/gui/lvgl)
 
 CONFIG_ZEPHYR_MIPI_SYS_T_MODULE=y
 CONFIG_ZEPHYR_NRF_HW_MODELS_MODULE=y
 CONFIG_ZEPHYR_OPEN_AMP_MODULE=y
 
 #
-# picolibc (D:/ncs-D/v2.7.0-rc3/modules/lib/picolibc)
+# picolibc (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/picolibc)
 #
 # CONFIG_PICOLIBC_MODULE is not set
 CONFIG_ZEPHYR_PICOLIBC_MODULE=y
-# end of picolibc (D:/ncs-D/v2.7.0-rc3/modules/lib/picolibc)
+# end of picolibc (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/picolibc)
 
 #
-# segger (D:/ncs-D/v2.7.0-rc3/modules/debug/segger)
+# segger (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/debug/segger)
 #
 CONFIG_ZEPHYR_SEGGER_MODULE=y
-# end of segger (D:/ncs-D/v2.7.0-rc3/modules/debug/segger)
+# end of segger (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/debug/segger)
 
 CONFIG_ZEPHYR_TINYCRYPT_MODULE=y
 
 #
-# uoscore-uedhoc (D:/ncs-D/v2.7.0-rc3/modules/lib/uoscore-uedhoc)
+# uoscore-uedhoc (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/uoscore-uedhoc)
 #
 CONFIG_ZEPHYR_UOSCORE_UEDHOC_MODULE=y
-# end of uoscore-uedhoc (D:/ncs-D/v2.7.0-rc3/modules/lib/uoscore-uedhoc)
+# end of uoscore-uedhoc (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/uoscore-uedhoc)
 
 #
-# zcbor (D:/ncs-D/v2.7.0-rc3/modules/lib/zcbor)
+# zcbor (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/zcbor)
 #
 CONFIG_ZEPHYR_ZCBOR_MODULE=y
 # CONFIG_ZCBOR is not set
-# end of zcbor (D:/ncs-D/v2.7.0-rc3/modules/lib/zcbor)
+# end of zcbor (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/zcbor)
 
 #
-# nrfxlib (D:/ncs-D/v2.7.0-rc3/nrfxlib)
+# nrfxlib (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/nrfxlib)
 #
 
 #
@@ -956,14 +956,14 @@ CONFIG_NRF_802154_SOURCE_NRFXLIB=y
 # end of Nordic nrfxlib
 
 CONFIG_ZEPHYR_NRFXLIB_MODULE=y
-# end of nrfxlib (D:/ncs-D/v2.7.0-rc3/nrfxlib)
+# end of nrfxlib (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/nrfxlib)
 
 #
-# connectedhomeip (D:/ncs-D/v2.7.0-rc3/modules/lib/matter)
+# connectedhomeip (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/matter)
 #
 # CONFIG_CHIP is not set
 CONFIG_ZEPHYR_CONNECTEDHOMEIP_MODULE=y
-# end of connectedhomeip (D:/ncs-D/v2.7.0-rc3/modules/lib/matter)
+# end of connectedhomeip (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/modules/lib/matter)
 
 # CONFIG_LIBMETAL is not set
 # CONFIG_LVGL is not set
@@ -2344,7 +2344,7 @@ CONFIG_NET_CONFIG_LOG_LEVEL=3
 # CONFIG_NET_CONFIG_SETTINGS is not set
 CONFIG_NET_SOCKETS=y
 CONFIG_NET_SOCKETS_PRIORITY_DEFAULT=50
-# CONFIG_NET_SOCKETS_POSIX_NAMES is not set
+CONFIG_NET_SOCKETS_POSIX_NAMES=y
 CONFIG_NET_SOCKETS_CONNECT_TIMEOUT=3000
 CONFIG_NET_SOCKETS_DNS_TIMEOUT=2000
 CONFIG_NET_SOCKETS_DNS_BACKOFF_INTERVAL=5000
@@ -2469,7 +2469,6 @@ CONFIG_COVERAGE_GCOV_HEAP_SIZE=16384
 
 CONFIG_TOOLCHAIN_ZEPHYR_0_16=y
 CONFIG_TOOLCHAIN_ZEPHYR_SUPPORTS_THREAD_LOCAL_STORAGE=y
-CONFIG_TOOLCHAIN_ZEPHYR_SUPPORTS_GNU_EXTENSIONS=y
 
 #
 # Build and Link Features
@@ -2559,6 +2558,7 @@ CONFIG_CHECK_INIT_PRIORITIES=y
 # CONFIG_EMIT_ALL_SYSCALLS is not set
 # end of Build Options
 
+CONFIG_DEPRECATED=y
 CONFIG_WARN_DEPRECATED=y
 CONFIG_EXPERIMENTAL=y
 CONFIG_ENFORCE_ZEPHYR_STDINT=y
@@ -2570,3 +2570,5 @@ CONFIG_ENFORCE_ZEPHYR_STDINT=y
 # CONFIG_IS_BOOTLOADER is not set
 # CONFIG_BOOTLOADER_BOSSA is not set
 # end of Boot Options
+
+CONFIG_MQTT_MOCK_MODE=y

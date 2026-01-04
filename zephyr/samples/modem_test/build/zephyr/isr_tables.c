@@ -53,13 +53,13 @@ uintptr_t __irq_vector_table _irq_vector_table[43] = {
 	((uintptr_t)&_isr_wrapper),
 };
 struct _isr_table_entry __sw_isr_table _sw_isr_table[43] = {
-	{(const void *)0x21500, (ISR)0x1fc15}, /* 0 */
-	{(const void *)0x214e8, (ISR)0x1fc15}, /* 1 */
-	{(const void *)0x214d0, (ISR)0x1fc15}, /* 2 */
-	{(const void *)0x214b8, (ISR)0x1fc15}, /* 3 */
-	{(const void *)0x214a0, (ISR)0x1fc15}, /* 4 */
-	{(const void *)0x21440, (ISR)0x20159}, /* 5 */
-	{(const void *)0x21428, (ISR)0x20159}, /* 6 */
+	{(const void *)0x217d8, (ISR)0x1fe69}, /* 0 */
+	{(const void *)0x217c0, (ISR)0x1fe69}, /* 1 */
+	{(const void *)0x217a8, (ISR)0x1fe69}, /* 2 */
+	{(const void *)0x21790, (ISR)0x1fe69}, /* 3 */
+	{(const void *)0x21778, (ISR)0x1fe69}, /* 4 */
+	{(const void *)0x21718, (ISR)0x203ad}, /* 5 */
+	{(const void *)0x21700, (ISR)0x203ad}, /* 6 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 7 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 8 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 9 */
@@ -83,10 +83,10 @@ struct _isr_table_entry __sw_isr_table _sw_isr_table[43] = {
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 27 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 28 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 29 */
-	{(const void *)0x21488, (ISR)0x1fc15}, /* 30 */
-	{(const void *)0x21470, (ISR)0x1fc15}, /* 31 */
+	{(const void *)0x21760, (ISR)0x1fe69}, /* 30 */
+	{(const void *)0x21748, (ISR)0x1fe69}, /* 31 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 32 */
-	{(const void *)0x21410, (ISR)0x20159}, /* 33 */
+	{(const void *)0x216e8, (ISR)0x203ad}, /* 33 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 34 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 35 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 36 */
@@ -95,5 +95,5 @@ struct _isr_table_entry __sw_isr_table _sw_isr_table[43] = {
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 39 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 40 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 41 */
-	{(const void *)0x21530, (ISR)0x151c5}, /* 42 */
+	{(const void *)0x21808, (ISR)0x15535}, /* 42 */
 };

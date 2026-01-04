@@ -1,5 +1,5 @@
-menu "nrf (D:/ncs-D/v2.7.0-rc3/nrf)"
-osource "D:/ncs-D/v2.7.0-rc3/nrf/sysbuild/Kconfig.sysbuild"
+menu "nrf (C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/nrf)"
+osource "C:/Users/NSameh/Desktop/zephyr/ncs-2.7.0/nrf/sysbuild/Kconfig.sysbuild"
 config ZEPHYR_NRF_MODULE
 	bool
 	default y

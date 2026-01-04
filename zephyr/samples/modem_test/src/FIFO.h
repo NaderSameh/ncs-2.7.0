@@ -1,5 +1,5 @@
-// #ifndef FIFO_H
-#define FIFOH_H
+#ifndef FIFO_H
+#define FIFO_H
 
 #include <errno.h>
 #include <stdbool.h>
@@ -13,7 +13,6 @@
 #define Tag_ID_Length (uint8_t)18
 #define Number_Of_Tags_Per_CyTrack (uint8_t)10
 
-// struct device *rtc;
 // Enums for message types
 typedef enum {
   Msg_Type_CyTag = 0x01,
@@ -44,7 +43,7 @@ typedef enum {
   Id_Type_CyConnect = 0x05
 } EN_idType_t;
 
-/****CyTag Event****/
+/*CyTag Event*/
 // All bits equal to 0 -> No event
 // Bit 0: Temperature Event
 // Bit 1: Humididty Event
@@ -62,20 +61,21 @@ typedef enum {
 // Fifo Elements is 16. 16*250+5 = 4,005 bytes which can fit in a sector. Sector
 // size is 4096 bytes. We store in 375 sectores. 375 * 16 = 6000 messages.
 
-// typedef struct ST_message_t {
-//   EN_msgType_t msgType;
-//   EN_idType_t idType;
-//   char msg[238];
-//   unsigned long timeStamp;
-// } __attribute__((packed)) ST_message_t;
+typedef struct ST_message_t {
+  EN_msgType_t msgType;
+  EN_idType_t idType;
+  uint8_t device_index;
+  char msg[238];
+  unsigned long timeStamp;
+} __attribute__((packed)) ST_message_t;
 
 // FIFO structure
-// typedef struct ST_Fifo_t {
-//   uint16_t StartPtr; // Pointer to oldest entry or EndPtr if empty
-//   uint16_t EndPtr;   // Pointer to next empty place to store a new entry
-//   uint8_t noElements;
-//   ST_message_t myMsgStruct[MQTT_QUEUE_SIZE];
-// } __attribute__((packed)) ST_Fifo_t;
+typedef struct ST_Fifo_t {
+  uint16_t StartPtr; // Pointer to oldest entry or EndPtr if empty
+  uint16_t EndPtr;   // Pointer to next empty place to store a new entry
+  uint8_t noElements;
+  ST_message_t myMsgStruct[MQTT_QUEUE_SIZE];
+} __attribute__((packed)) ST_Fifo_t;
 
 typedef struct {
   char Ble_CyTag_Ids[Number_Of_Tags_Per_CyTrack][Tag_ID_Length];
@@ -87,14 +87,20 @@ typedef struct {
   Tags_Info Tags_Info;
 } __attribute__((packed)) Assigned_Tags;
 
-// void fifoInit(void);
-// int8_t fifoPush(ST_message_t *msg);
-// uint16_t fifoPull(char *str);
+/* Global FIFO instance - defined in FIFO.c */
+extern ST_Fifo_t myFifo;
 
-// Assigned_Tags my_Tags;
+/* FIFO operations */
+void fifoInit(void);
+int8_t fifoPush(ST_message_t *msg);
+uint16_t fifoPull(char *str);
+uint16_t peekFromFifo(char *str);
+int8_t overwriteLastMessage(ST_message_t *msg);
 
-// unsigned long get_unix_ts(void){
-//     return (unsigned long)10101010101;
-// }
+/* JSON helper functions */
+void trimJsonBraces(char *str);
+void removeFirstField(char *str);
+void add_fields_to_json(char *json, const char *fields);
+void return_power_status(char *buffer, size_t size);
 
-// #endif
+#endif

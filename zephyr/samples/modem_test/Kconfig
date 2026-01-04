@@ -1,0 +1,15 @@
+# Copyright (c) 2025
+# SPDX-License-Identifier: Apache-2.0
+
+mainmenu "Modem Test Application Configuration"
+
+source "Kconfig.zephyr"
+
+config MQTT_MOCK_MODE
+	bool "Enable MQTT mock mode for testing"
+	default n
+	help
+	  Enable MQTT mock mode for testing payload validation without
+	  actual network connection to MQTT broker. When enabled, the
+	  application will skip actual MQTT connection and simulate
+	  successful connection for testing purposes.

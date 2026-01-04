@@ -2,7 +2,8 @@
     "files.associations": {
         "*.ejs": "html",
         "*.go": "go",
-        "chat.h": "c"
+        "chat.h": "c",
+        "uart.h": "c"
     },
     "nrf-connect.applications": [
         "${workspaceFolder}\\zephyr\\samples\\modem_test"
